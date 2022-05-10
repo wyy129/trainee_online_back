@@ -1,15 +1,23 @@
 package com.example.trainee_online_back.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import lombok.Data;
 
 /**
  * 毕业设计表
  * @TableName project
  */
+@TableName(value ="project")
+@Data
 public class Project implements Serializable {
     /**
      * 毕设id
      */
+    @TableId(type = IdType.AUTO)
     private Integer projectId;
 
     /**
@@ -27,63 +35,8 @@ public class Project implements Serializable {
      */
     private Integer teacherId;
 
+    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 毕设id
-     */
-    public Integer getProjectId() {
-        return projectId;
-    }
-
-    /**
-     * 毕设id
-     */
-    public void setProjectId(Integer projectId) {
-        this.projectId = projectId;
-    }
-
-    /**
-     * 毕设名称
-     */
-    public String getProjectName() {
-        return projectName;
-    }
-
-    /**
-     * 毕设名称
-     */
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-    /**
-     * 毕设内容
-     */
-    public String getProjectContent() {
-        return projectContent;
-    }
-
-    /**
-     * 毕设内容
-     */
-    public void setProjectContent(String projectContent) {
-        this.projectContent = projectContent;
-    }
-
-    /**
-     * 发布毕设教师id;关联teacher表里面teacher_id
-     */
-    public Integer getTeacherId() {
-        return teacherId;
-    }
-
-    /**
-     * 发布毕设教师id;关联teacher表里面teacher_id
-     */
-    public void setTeacherId(Integer teacherId) {
-        this.teacherId = teacherId;
-    }
 
     @Override
     public boolean equals(Object that) {

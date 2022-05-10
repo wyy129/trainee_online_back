@@ -8,11 +8,9 @@
             <id property="collegeId" column="college_id" jdbcType="INTEGER"/>
             <result property="collegeName" column="college_name" jdbcType="VARCHAR"/>
             <result property="collegeExplan" column="college_explan" jdbcType="VARCHAR"/>
-            <result property="studentNumber" column="student_number" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        college_id,college_name,college_explan,
-        student_number
+        college_id,college_name,college_explan
     </sql>
 </mapper>

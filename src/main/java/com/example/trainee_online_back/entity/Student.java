@@ -1,15 +1,23 @@
 package com.example.trainee_online_back.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import lombok.Data;
 
 /**
  * 学生表
  * @TableName student
  */
+@TableName(value ="student")
+@Data
 public class Student implements Serializable {
     /**
      * 学生id
      */
+    @TableId(type = IdType.AUTO)
     private Integer studentId;
 
     /**
@@ -57,147 +65,8 @@ public class Student implements Serializable {
      */
     private Integer projectId;
 
+    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 学生id
-     */
-    public Integer getStudentId() {
-        return studentId;
-    }
-
-    /**
-     * 学生id
-     */
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
-    }
-
-    /**
-     * 用户名
-     */
-    public String getStudentUsername() {
-        return studentUsername;
-    }
-
-    /**
-     * 用户名
-     */
-    public void setStudentUsername(String studentUsername) {
-        this.studentUsername = studentUsername;
-    }
-
-    /**
-     * 密码
-     */
-    public String getStudentPassword() {
-        return studentPassword;
-    }
-
-    /**
-     * 密码
-     */
-    public void setStudentPassword(String studentPassword) {
-        this.studentPassword = studentPassword;
-    }
-
-    /**
-     * 学生姓名
-     */
-    public String getStudentName() {
-        return studentName;
-    }
-
-    /**
-     * 学生姓名
-     */
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
-    }
-
-    /**
-     * 学生性别;0是无，1是男，2是女
-     */
-    public Integer getStudentGender() {
-        return studentGender;
-    }
-
-    /**
-     * 学生性别;0是无，1是男，2是女
-     */
-    public void setStudentGender(Integer studentGender) {
-        this.studentGender = studentGender;
-    }
-
-    /**
-     * 学生状态
-     */
-    public String getStudentStatue() {
-        return studentStatue;
-    }
-
-    /**
-     * 学生状态
-     */
-    public void setStudentStatue(String studentStatue) {
-        this.studentStatue = studentStatue;
-    }
-
-    /**
-     * 成绩
-     */
-    public String getStudentScore() {
-        return studentScore;
-    }
-
-    /**
-     * 成绩
-     */
-    public void setStudentScore(String studentScore) {
-        this.studentScore = studentScore;
-    }
-
-    /**
-     * 学院 id;对应college表里面college_id外键
-     */
-    public Integer getCollegeId() {
-        return collegeId;
-    }
-
-    /**
-     * 学院 id;对应college表里面college_id外键
-     */
-    public void setCollegeId(Integer collegeId) {
-        this.collegeId = collegeId;
-    }
-
-    /**
-     * 专业id
-     */
-    public Integer getMajorId() {
-        return majorId;
-    }
-
-    /**
-     * 专业id
-     */
-    public void setMajorId(Integer majorId) {
-        this.majorId = majorId;
-    }
-
-    /**
-     * 毕设id;对应project表里面project_id外键
-     */
-    public Integer getProjectId() {
-        return projectId;
-    }
-
-    /**
-     * 毕设id;对应project表里面project_id外键
-     */
-    public void setProjectId(Integer projectId) {
-        this.projectId = projectId;
-    }
 
     @Override
     public boolean equals(Object that) {

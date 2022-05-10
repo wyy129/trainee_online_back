@@ -1,16 +1,23 @@
 package com.example.trainee_online_back.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import lombok.Data;
 
 /**
  * 管理员表
- * @author wyy
  * @TableName admin
  */
+@TableName(value ="admin")
+@Data
 public class Admin implements Serializable {
     /**
      * 管理员id
      */
+    @TableId(type = IdType.AUTO)
     private Integer adminId;
 
     /**
@@ -28,63 +35,8 @@ public class Admin implements Serializable {
      */
     private String adminName;
 
+    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 管理员id
-     */
-    public Integer getAdminId() {
-        return adminId;
-    }
-
-    /**
-     * 管理员id
-     */
-    public void setAdminId(Integer adminId) {
-        this.adminId = adminId;
-    }
-
-    /**
-     * 管理员账号
-     */
-    public String getAdminUsername() {
-        return adminUsername;
-    }
-
-    /**
-     * 管理员账号
-     */
-    public void setAdminUsername(String adminUsername) {
-        this.adminUsername = adminUsername;
-    }
-
-    /**
-     * 管理员密码
-     */
-    public String getAdminPassword() {
-        return adminPassword;
-    }
-
-    /**
-     * 管理员密码
-     */
-    public void setAdminPassword(String adminPassword) {
-        this.adminPassword = adminPassword;
-    }
-
-    /**
-     * 管理员姓名
-     */
-    public String getAdminName() {
-        return adminName;
-    }
-
-    /**
-     * 管理员姓名
-     */
-    public void setAdminName(String adminName) {
-        this.adminName = adminName;
-    }
 
     @Override
     public boolean equals(Object that) {

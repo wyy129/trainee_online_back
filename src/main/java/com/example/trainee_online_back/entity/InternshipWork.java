@@ -1,16 +1,24 @@
 package com.example.trainee_online_back.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
+import lombok.Data;
 
 /**
  * 周记表
  * @TableName internship_work
  */
+@TableName(value ="internship_work")
+@Data
 public class InternshipWork implements Serializable {
     /**
      * 周记id
      */
+    @TableId(type = IdType.AUTO)
     private Integer workId;
 
     /**
@@ -33,77 +41,8 @@ public class InternshipWork implements Serializable {
      */
     private Integer studentId;
 
+    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 周记id
-     */
-    public Integer getWorkId() {
-        return workId;
-    }
-
-    /**
-     * 周记id
-     */
-    public void setWorkId(Integer workId) {
-        this.workId = workId;
-    }
-
-    /**
-     * 周记标题
-     */
-    public String getWorkTitle() {
-        return workTitle;
-    }
-
-    /**
-     * 周记标题
-     */
-    public void setWorkTitle(String workTitle) {
-        this.workTitle = workTitle;
-    }
-
-    /**
-     * 周记内容
-     */
-    public String getWorkContent() {
-        return workContent;
-    }
-
-    /**
-     * 周记内容
-     */
-    public void setWorkContent(String workContent) {
-        this.workContent = workContent;
-    }
-
-    /**
-     * 创建时间
-     */
-    public Date getWorkCreadtime() {
-        return workCreadtime;
-    }
-
-    /**
-     * 创建时间
-     */
-    public void setWorkCreadtime(Date workCreadtime) {
-        this.workCreadtime = workCreadtime;
-    }
-
-    /**
-     * 学生id
-     */
-    public Integer getStudentId() {
-        return studentId;
-    }
-
-    /**
-     * 学生id
-     */
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
-    }
 
     @Override
     public boolean equals(Object that) {

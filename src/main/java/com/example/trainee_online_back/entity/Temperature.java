@@ -1,16 +1,24 @@
 package com.example.trainee_online_back.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
+import lombok.Data;
 
 /**
  * 体温表
  * @TableName temperature
  */
+@TableName(value ="temperature")
+@Data
 public class Temperature implements Serializable {
     /**
      * 体温id
      */
+    @TableId(type = IdType.AUTO)
     private Integer temperatureId;
 
     /**
@@ -48,119 +56,8 @@ public class Temperature implements Serializable {
      */
     private Integer deleted;
 
+    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 体温id
-     */
-    public Integer getTemperatureId() {
-        return temperatureId;
-    }
-
-    /**
-     * 体温id
-     */
-    public void setTemperatureId(Integer temperatureId) {
-        this.temperatureId = temperatureId;
-    }
-
-    /**
-     * 是否危险;1是危险，0是安全
-     */
-    public String getIsRisk() {
-        return isRisk;
-    }
-
-    /**
-     * 是否危险;1是危险，0是安全
-     */
-    public void setIsRisk(String isRisk) {
-        this.isRisk = isRisk;
-    }
-
-    /**
-     * 体温度数
-     */
-    public String getTemperatureValue() {
-        return temperatureValue;
-    }
-
-    /**
-     * 体温度数
-     */
-    public void setTemperatureValue(String temperatureValue) {
-        this.temperatureValue = temperatureValue;
-    }
-
-    /**
-     * 上报时候地址
-     */
-    public String getTemperatureAddress() {
-        return temperatureAddress;
-    }
-
-    /**
-     * 上报时候地址
-     */
-    public void setTemperatureAddress(String temperatureAddress) {
-        this.temperatureAddress = temperatureAddress;
-    }
-
-    /**
-     * 症状
-     */
-    public String getTemperatureSymptom() {
-        return temperatureSymptom;
-    }
-
-    /**
-     * 症状
-     */
-    public void setTemperatureSymptom(String temperatureSymptom) {
-        this.temperatureSymptom = temperatureSymptom;
-    }
-
-    /**
-     * 创建时间
-     */
-    public Date getTemperatureCreadetime() {
-        return temperatureCreadetime;
-    }
-
-    /**
-     * 创建时间
-     */
-    public void setTemperatureCreadetime(Date temperatureCreadetime) {
-        this.temperatureCreadetime = temperatureCreadetime;
-    }
-
-    /**
-     * 学生id;关联student表里面student_id
-     */
-    public Integer getStudentId() {
-        return studentId;
-    }
-
-    /**
-     * 学生id;关联student表里面student_id
-     */
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
-    }
-
-    /**
-     * 逻辑删除;是否逻辑删除 删除为1，未删除0
-     */
-    public Integer getDeleted() {
-        return deleted;
-    }
-
-    /**
-     * 逻辑删除;是否逻辑删除 删除为1，未删除0
-     */
-    public void setDeleted(Integer deleted) {
-        this.deleted = deleted;
-    }
 
     @Override
     public boolean equals(Object that) {

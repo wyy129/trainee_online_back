@@ -1,15 +1,23 @@
 package com.example.trainee_online_back.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import lombok.Data;
 
 /**
  * 专业表
  * @TableName major
  */
+@TableName(value ="major")
+@Data
 public class Major implements Serializable {
     /**
      * 专业id
      */
+    @TableId(type = IdType.AUTO)
     private Integer majorId;
 
     /**
@@ -22,49 +30,8 @@ public class Major implements Serializable {
      */
     private Integer collegeId;
 
+    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 专业id
-     */
-    public Integer getMajorId() {
-        return majorId;
-    }
-
-    /**
-     * 专业id
-     */
-    public void setMajorId(Integer majorId) {
-        this.majorId = majorId;
-    }
-
-    /**
-     * 专业名称
-     */
-    public String getMajorName() {
-        return majorName;
-    }
-
-    /**
-     * 专业名称
-     */
-    public void setMajorName(String majorName) {
-        this.majorName = majorName;
-    }
-
-    /**
-     * 学院id;关联college表
-     */
-    public Integer getCollegeId() {
-        return collegeId;
-    }
-
-    /**
-     * 学院id;关联college表
-     */
-    public void setCollegeId(Integer collegeId) {
-        this.collegeId = collegeId;
-    }
 
     @Override
     public boolean equals(Object that) {

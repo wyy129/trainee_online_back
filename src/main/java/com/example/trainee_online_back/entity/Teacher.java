@@ -1,15 +1,23 @@
 package com.example.trainee_online_back.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import lombok.Data;
 
 /**
  * 教师表
  * @TableName teacher
  */
+@TableName(value ="teacher")
+@Data
 public class Teacher implements Serializable {
     /**
      * 教师id
      */
+    @TableId(type = IdType.AUTO)
     private Integer teacherId;
 
     /**
@@ -27,63 +35,8 @@ public class Teacher implements Serializable {
      */
     private String teacherName;
 
+    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 教师id
-     */
-    public Integer getTeacherId() {
-        return teacherId;
-    }
-
-    /**
-     * 教师id
-     */
-    public void setTeacherId(Integer teacherId) {
-        this.teacherId = teacherId;
-    }
-
-    /**
-     * 教师用户名
-     */
-    public String getTeacherUsername() {
-        return teacherUsername;
-    }
-
-    /**
-     * 教师用户名
-     */
-    public void setTeacherUsername(String teacherUsername) {
-        this.teacherUsername = teacherUsername;
-    }
-
-    /**
-     * 教师密码
-     */
-    public String getTeacherPassword() {
-        return teacherPassword;
-    }
-
-    /**
-     * 教师密码
-     */
-    public void setTeacherPassword(String teacherPassword) {
-        this.teacherPassword = teacherPassword;
-    }
-
-    /**
-     * 教师姓名
-     */
-    public String getTeacherName() {
-        return teacherName;
-    }
-
-    /**
-     * 教师姓名
-     */
-    public void setTeacherName(String teacherName) {
-        this.teacherName = teacherName;
-    }
 
     @Override
     public boolean equals(Object that) {
