@@ -18,3 +18,10 @@ spring:
     name: consumer
 server:
   port: 9000
+# 逻辑删除
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0

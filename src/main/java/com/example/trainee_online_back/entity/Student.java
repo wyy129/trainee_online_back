@@ -46,11 +46,6 @@ public class Student implements Serializable {
     private String studentStatue;
 
     /**
-     * 成绩
-     */
-    private String studentScore;
-
-    /**
      * 学院 id;对应college表里面college_id外键
      */
     private Integer collegeId;
@@ -59,11 +54,6 @@ public class Student implements Serializable {
      * 专业id
      */
     private Integer majorId;
-
-    /**
-     * 毕设id;对应project表里面project_id外键
-     */
-    private Integer projectId;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
@@ -86,10 +76,8 @@ public class Student implements Serializable {
             && (this.getStudentName() == null ? other.getStudentName() == null : this.getStudentName().equals(other.getStudentName()))
             && (this.getStudentGender() == null ? other.getStudentGender() == null : this.getStudentGender().equals(other.getStudentGender()))
             && (this.getStudentStatue() == null ? other.getStudentStatue() == null : this.getStudentStatue().equals(other.getStudentStatue()))
-            && (this.getStudentScore() == null ? other.getStudentScore() == null : this.getStudentScore().equals(other.getStudentScore()))
             && (this.getCollegeId() == null ? other.getCollegeId() == null : this.getCollegeId().equals(other.getCollegeId()))
-            && (this.getMajorId() == null ? other.getMajorId() == null : this.getMajorId().equals(other.getMajorId()))
-            && (this.getProjectId() == null ? other.getProjectId() == null : this.getProjectId().equals(other.getProjectId()));
+            && (this.getMajorId() == null ? other.getMajorId() == null : this.getMajorId().equals(other.getMajorId()));
     }
 
     @Override
@@ -102,10 +90,8 @@ public class Student implements Serializable {
         result = prime * result + ((getStudentName() == null) ? 0 : getStudentName().hashCode());
         result = prime * result + ((getStudentGender() == null) ? 0 : getStudentGender().hashCode());
         result = prime * result + ((getStudentStatue() == null) ? 0 : getStudentStatue().hashCode());
-        result = prime * result + ((getStudentScore() == null) ? 0 : getStudentScore().hashCode());
         result = prime * result + ((getCollegeId() == null) ? 0 : getCollegeId().hashCode());
         result = prime * result + ((getMajorId() == null) ? 0 : getMajorId().hashCode());
-        result = prime * result + ((getProjectId() == null) ? 0 : getProjectId().hashCode());
         return result;
     }
 
@@ -121,10 +107,8 @@ public class Student implements Serializable {
         sb.append(", studentName=").append(studentName);
         sb.append(", studentGender=").append(studentGender);
         sb.append(", studentStatue=").append(studentStatue);
-        sb.append(", studentScore=").append(studentScore);
         sb.append(", collegeId=").append(collegeId);
         sb.append(", majorId=").append(majorId);
-        sb.append(", projectId=").append(projectId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

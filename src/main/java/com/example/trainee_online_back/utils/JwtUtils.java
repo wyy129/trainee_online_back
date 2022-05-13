@@ -24,17 +24,16 @@ public class JwtUtils {
      * 载荷内容：
      * 加密密钥：这个人的id加上jwt
      */
-    public static String createToken(String user) {
+    public static String createToken(String userId) {
 
         Calendar nowTime = Calendar.getInstance();
         nowTime.add(Calendar.HOUR, 24);
         Date expiresDate = nowTime.getTime();
 
-        return JWT.create().withAudience(user)
+        return JWT.create().withAudience(userId)
                 .withIssuedAt(new Date())
                 .withExpiresAt(expiresDate)
-                .withClaim("userName", user)
-                .sign(Algorithm.HMAC256(user + "jwt"));
+                .sign(Algorithm.HMAC256(userId + "jwt"));
     }
 
     /**
@@ -43,12 +42,14 @@ public class JwtUtils {
      * @param token
      * @throws
      */
-    public static void verifyToken(String token, String user) {
+    public static boolean verifyToken(String token, String user) {
         DecodedJWT jwt = null;
         try {
             JWTVerifier verifier = JWT.require(Algorithm.HMAC256(user + "jwt")).build();
             jwt = verifier.verify(token);
+            return true;
         } catch (Exception e) {
+            return false;
             //效验失败
             //这里抛出的异常是我自定义的一个异常，你也可以写成别的
         }
