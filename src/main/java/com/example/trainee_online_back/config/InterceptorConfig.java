@@ -12,26 +12,19 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * @description: 拦截器配置
- * @author: shiliqiang
- * @company: CTY Technology Co.,Ltd
- * @since: 2021/8/24 14:01
- * @version: V1.0
- */
+ * @desc: 拦截器配置
+ * @author: wyy
+ * @date: 2022-06-07 20:59:28
+ **/
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
 
 
      /**
-      * @description: 通过bean的方式把实例交给容器管理
-      * @param:
-      * @return:
-      * @exception:
-      * @author: shiliqiang
-      * @company: CTY Technology Co.,Ltd
-      * @since: 2021/9/2 9:14
-      * @version: V1.0
-      */
+      * @desc:  通过bean的方式把实例交给容器管理
+      * @author: wyy
+      * @date: 2022-06-07 20:12:42
+      **/
     @Bean
     public UserInfoInterceptor getUserInfoInterceptor() {
         return new UserInfoInterceptor();
@@ -45,14 +38,14 @@ public class InterceptorConfig implements WebMvcConfigurer {
         String excludePathStr = "/common/queryWechatArticle,/serviceStationActivation/getSfUserInfo," +
                 "/common/getCode,/common/isPhoneExisting,/serviceStationActivation/updateSfUserInfo,"
                 + "/serviceStationActivation/verityUserInfo,/serviceStationActivation/setUserInfo,/sf/**,/userUpload";
-       
+
         // 所有路径都被拦截
         String[] excludePath = excludePathStr.split(",");
         registration.excludePathPatterns(excludePath);
         // 所有路径都被拦截
         registration.addPathPatterns("/**");
-        
-        
+
+
         // 添加不拦截路径
         //registration.excludePathPatterns("/contents/getContentsTree","/common/queryWechatArticle");
     }
