@@ -1,6 +1,7 @@
 spring:
   redis:
-    host: localhost
+    host: 101.43.217.252
+    password: waimou
     port: 6379
     database: 0
     jedis:
@@ -10,10 +11,10 @@ spring:
         max-idle: 4
         min-idle: 0
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: root
-    url: jdbc:mysql://127.0.0.1:3306/waimou?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    password: Waimou..
+    url: jdbc:mysql://101.43.217.252:3306/waimou?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
   application:
     name: consumer
 server:
