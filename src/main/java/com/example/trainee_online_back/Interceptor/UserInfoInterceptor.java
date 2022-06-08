@@ -54,7 +54,13 @@ public class UserInfoInterceptor implements HandlerInterceptor {
         RequestUtil.userId.set(Long.valueOf(userid));
         RequestUtil.userRole.set(Long.valueOf(role));
         TokenUtil.verifyToken(token, userid);
-        redisCache.expire("user_" + userid + "token", 20, TimeUnit.MINUTES);
+        Object cachetoken = redisCache.getCacheObject("user_" + userid + "token");
+        if (cachetoken != null) {
+
+            redisCache.expire("user_" + userid + "token", 20, TimeUnit.MINUTES);
+        } else {
+            return false;
+        }
         logger.info("入参用户id：" + userid);
 
         return true;
