@@ -24,7 +24,7 @@ public class TokenUtil {
 
 
     /**
-     * 过期时间2小时
+     * 过期时间一天
      * 单位为秒
      */
     private static final long EXPIRATION = 3600;
@@ -38,7 +38,7 @@ public class TokenUtil {
      */
     public static String createToken(String userId) {
         //过期时间
-        Date expireDate = new Date(System.currentTimeMillis() + EXPIRATION * 1000);
+        Date expireDate = new Date(System.currentTimeMillis() + EXPIRATION * 1000*24);
         String token = JWT.create().withAudience(userId)
                 .withIssuedAt(new Date())
                 .withExpiresAt(expireDate)

@@ -38,7 +38,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 //        String excludePathStr = "/common/queryWechatArticle,/serviceStationActivation/getSfUserInfo," +
 //                "/common/getCode,/common/isPhoneExisting,/serviceStationActivation/updateSfUserInfo,"
 //                + "/serviceStationActivation/verityUserInfo,/serviceStationActivation/setUserInfo,/sf/**,/userUpload";
-        String excludePathStr = "/user/login";
+        String excludePathStr = "/login";
         // 所有路径都被拦截
         String[] excludePath = excludePathStr.split(",");
         registration.excludePathPatterns(excludePath);
