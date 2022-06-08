@@ -35,7 +35,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             return "";
         }
         String userid = user.getId().toString();
-        String role = user.getRole().toString();
         String token = TokenUtil.createToken(userid);
         redisCache.setCacheObject("user_" + userid + "token", token, 20, TimeUnit.MINUTES);
         return token;
