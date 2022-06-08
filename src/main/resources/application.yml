@@ -27,4 +27,4 @@ spring:
     password: Waimou..
     url: jdbc:mysql://101.43.217.252:3306/dev_tr?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
 server:
-  port: 9000
+  port: 9001

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.trainee_online_back.mapper.ProjectResultMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.trainee_online_back.entity.ProjectResult">
+            <id property="projectResultId" column="project_result_id" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="projectInfoId" column="project_info_id" jdbcType="INTEGER"/>
+            <result property="early" column="early" jdbcType="VARCHAR"/>
+            <result property="metaphase" column="metaphase" jdbcType="VARCHAR"/>
+            <result property="last" column="last" jdbcType="VARCHAR"/>
+            <result property="earlyTeacher" column="early_teacher" jdbcType="VARCHAR"/>
+            <result property="metaphaseTeacher" column="metaphase_teacher" jdbcType="VARCHAR"/>
+            <result property="lastTeacher" column="last_teacher" jdbcType="VARCHAR"/>
+            <result property="resultScore" column="result_score" jdbcType="VARCHAR"/>
+            <result property="revise" column="revise" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        project_result_id,user_id,project_info_id,
+        early,metaphase,last,
+        early_teacher,metaphase_teacher,last_teacher,
+        result_score,revise
+    </sql>
+</mapper>

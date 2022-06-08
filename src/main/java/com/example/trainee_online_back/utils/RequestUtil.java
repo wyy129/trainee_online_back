@@ -25,7 +25,8 @@ public class RequestUtil {
     /**
      *本地userid
      */
-    public static final ThreadLocal<Long> userInfo = new ThreadLocal<>();
+    public static final ThreadLocal<Long> userId = new ThreadLocal<>();
+    public static final ThreadLocal<Long> userRole = new ThreadLocal<>();
 
     /**
      * @description: 获取userid
@@ -52,9 +53,14 @@ public class RequestUtil {
      * @since: 2021/9/17 14:09
      * @version: V1.0
      */
-    public static Long getUserInfoId(){
-        Assert.notNull(userInfo.get(),"请登录系统");
-        return userInfo.get();
+    public static Long getTLUserId(){
+        Assert.notNull(userId.get(),"请登录系统");
+        return userId.get();
+    }
+
+    public static Long getTLUserRole(){
+        Assert.notNull(userRole.get(),"请登录系统");
+        return userRole.get();
     }
 
     /**

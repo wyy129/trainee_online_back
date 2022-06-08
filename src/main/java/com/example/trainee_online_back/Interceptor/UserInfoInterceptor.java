@@ -5,12 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.example.trainee_online_back.exception.BasicInfoException;
 import com.example.trainee_online_back.utils.RequestUtil;
+import com.example.trainee_online_back.utils.StringUtils;
 import com.example.trainee_online_back.utils.TokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -41,14 +41,15 @@ public class UserInfoInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String userid = request.getHeader("userid");
+        String role = request.getHeader("role");
         String token = request.getHeader("token");
 
-        if (StringUtils.isEmpty(userid) || StringUtils.isEmpty(token)) {
-            throw new BasicInfoException("userid或token不能为空");
+        if (StringUtils.isEmpty(userid) || StringUtils.isEmpty(token)||StringUtils.isEmpty(role)) {
+            throw new BasicInfoException("userid或token或role不能为空");
         }
-        RequestUtil.userInfo.set(Long.valueOf(userid));
+        RequestUtil.userId.set(Long.valueOf(userid));
+        RequestUtil.userRole.set(Long.valueOf(role));
         TokenUtil.verifyToken(token,userid);
-//        tokenrecordTService.checkToken(token, userid);
         logger.info("入参：" + userid);
 
         return true;
@@ -62,8 +63,8 @@ public class UserInfoInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-        if (RequestUtil.userInfo.get() != null) {
-            RequestUtil.userInfo.remove();
+        if (RequestUtil.userId.get() != null) {
+            RequestUtil.userId.remove();
         }
         logger.info("-返回-");
     }

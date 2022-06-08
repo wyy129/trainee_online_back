@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.trainee_online_back.mapper.CollegeMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.trainee_online_back.entity.College">
+            <id property="collegeId" column="college_id" jdbcType="INTEGER"/>
+            <result property="collegeName" column="college_name" jdbcType="VARCHAR"/>
+            <result property="collegeExplan" column="college_explan" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        college_id,college_name,college_explan
+    </sql>
+</mapper>
