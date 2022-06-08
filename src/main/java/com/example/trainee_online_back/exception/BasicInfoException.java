@@ -15,7 +15,7 @@ public class BasicInfoException extends RuntimeException {
 
     public BasicInfoException(String msg){
         super(msg);
-        this.code = -1;
+        this.code = 401;
     }
 
     public BasicInfoException(int code, String msg){

@@ -59,8 +59,7 @@ public class UserInfoInterceptor implements HandlerInterceptor {
 
             redisCache.expire("user_" + userid + "token", 20, TimeUnit.MINUTES);
         } else {
-            response.setStatus(401);
-            return false;
+            throw new BasicInfoException("token失效");
         }
         logger.info("入参用户id：" + userid);
 
