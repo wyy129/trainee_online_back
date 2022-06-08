@@ -39,7 +39,11 @@ public class TestController {
         Object abc = redisCache.getCacheObject("abc");
         System.out.println(abc);
     }
-
+/**
+ * @description: 测试mybatis-plus
+ * @author wangyangyang
+ * @date: 2022/6/8 14:00
+ */
     @RequestMapping("/test2")
     public void test2() {
         User user = new User();
@@ -49,5 +53,14 @@ public class TestController {
         System.out.println(insert);
         List<User> users = userMapper.selectList(null);
         System.out.println(users);
+    }
+/**
+ * @description: 测试接口拦截器，是否没错访问接口都更新redis缓存
+ * @author wangyangyang
+ * @date: 2022/6/8 14:01
+ */
+    @RequestMapping("/test3")
+    public void test3() {
+        System.out.println("进入到test3");
     }
 }

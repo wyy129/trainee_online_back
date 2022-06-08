@@ -11,6 +11,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 
 import com.example.trainee_online_back.exception.BasicInfoException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 /**
@@ -38,11 +39,11 @@ public class TokenUtil {
      */
     public static String createToken(String userId) {
         //过期时间
-        Date expireDate = new Date(System.currentTimeMillis() + EXPIRATION * 1000*24);
+        Date expireDate = new Date(System.currentTimeMillis() + EXPIRATION * 1000 * 24);
         String token = JWT.create().withAudience(userId)
                 .withIssuedAt(new Date())
                 .withExpiresAt(expireDate)
-                .sign(Algorithm.HMAC256("waimou"+userId));
+                .sign(Algorithm.HMAC256("waimou" + userId));
         return token;
     }
 
@@ -53,7 +54,7 @@ public class TokenUtil {
      */
     public static void verifyToken(String token, String userid) {
         try {
-            JWTVerifier verifier = JWT.require(Algorithm.HMAC256("waimou" +userid)).build();
+            JWTVerifier verifier = JWT.require(Algorithm.HMAC256("waimou" + userid)).build();
             verifier.verify(token);
         } catch (Exception e) {
             //效验失败
