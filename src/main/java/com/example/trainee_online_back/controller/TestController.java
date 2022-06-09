@@ -2,6 +2,7 @@ package com.example.trainee_online_back.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.trainee_online_back.Interceptor.UserInfoInterceptor;
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
 import com.example.trainee_online_back.entity.User;
 import com.example.trainee_online_back.mapper.AdminUserMapper;
@@ -9,6 +10,8 @@ import com.example.trainee_online_back.mapper.UserMapper;
 import com.example.trainee_online_back.service.UserService;
 import com.example.trainee_online_back.utils.PageUtil;
 import com.example.trainee_online_back.utils.RedisCache;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -28,6 +31,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/test")
 public class TestController {
+    private static Logger logger = LoggerFactory.getLogger(TestController.class);
     @Autowired
     private RedisCache redisCache;
     @Autowired
@@ -84,5 +88,18 @@ public class TestController {
         JSONObject pageData = PageUtil.getPageData(allStudent);
         System.out.println(pageData);
 
+    }
+    /**
+     * @description: 测试mybatis-plus逻辑删除
+     * @author wangyangyang
+     * @date: 2022/6/9 11:53
+     */
+    @RequestMapping("/test5")
+    public void test5() {
+        User user = userMapper.selectById(1);
+        System.out.println(user);
+        userMapper.deleteById(1);
+        User user1 = userMapper.selectById(1);
+        System.out.println(user1);
     }
 }

@@ -1,9 +1,7 @@
 package com.example.trainee_online_back.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
@@ -54,6 +52,7 @@ public class Temperature implements Serializable {
     /**
      * 逻辑删除;是否逻辑删除 删除为-1，未删除0
      */
+    @TableLogic
     private Integer deleted;
 
     @TableField(exist = false)
