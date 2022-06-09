@@ -22,10 +22,10 @@ spring:
         # #连接池最大阻塞等待时间（使用负值表示没有限制）
         max-wait: -1ms
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
     username: root
     password: Waimou..
-    url: jdbc:mysql://101.43.217.252:3306/dev_tr?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:p6spy:mysql://101.43.217.252:3306/dev_tr?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
 server:
   port: 9000
 mybatis-plus:
