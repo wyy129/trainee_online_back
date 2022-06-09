@@ -1,5 +1,7 @@
 package com.example.trainee_online_back.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
 import com.example.trainee_online_back.entity.Dto.LoginBodyDTO;
 import com.example.trainee_online_back.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -24,4 +26,10 @@ public interface UserService extends IService<User> {
      * @date: 2022/6/8 13:10
      */
     User getUserByUsername(String username);
+    /**
+     * @description: 分页获取所有学生信息
+     * @author wangyangyang
+     * @date: 2022/6/9 11:22
+     */
+    Page<User> getAllStudent(BaseQueryDto baseQueryDto);
 }

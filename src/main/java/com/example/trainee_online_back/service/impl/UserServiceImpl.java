@@ -1,7 +1,10 @@
 package com.example.trainee_online_back.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
 import com.example.trainee_online_back.entity.User;
 import com.example.trainee_online_back.service.UserService;
 import com.example.trainee_online_back.mapper.UserMapper;
@@ -10,6 +13,7 @@ import com.example.trainee_online_back.utils.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -47,6 +51,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         return userMapper.selectOne(userQueryWrapper);
 
     }
+
+    @Override
+    public Page<User> getAllStudent(BaseQueryDto baseQueryDto) {
+        Page<User> userPage = new Page<>(Optional.ofNullable(baseQueryDto.getPage()).orElse(1L), Optional.ofNullable(baseQueryDto.getPageSize()).orElse(20L));
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.eq("role", 1);
+        IPage<User> userIPage = userMapper.selectPage(userPage, userQueryWrapper);
+        return userPage;
+    }
+
 }
 
 
