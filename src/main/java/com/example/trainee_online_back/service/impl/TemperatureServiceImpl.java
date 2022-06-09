@@ -1,9 +1,16 @@
 package com.example.trainee_online_back.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
 import com.example.trainee_online_back.entity.Temperature;
+import com.example.trainee_online_back.entity.Vo.RiskStudent;
 import com.example.trainee_online_back.service.TemperatureService;
 import com.example.trainee_online_back.mapper.TemperatureMapper;
+import com.example.trainee_online_back.utils.PageUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,7 +21,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class TemperatureServiceImpl extends ServiceImpl<TemperatureMapper, Temperature>
     implements TemperatureService{
-
+    @Autowired
+    private TemperatureMapper temperatureMapper;
+    @Override
+    public JSONObject getRiskStudent(BaseQueryDto baseQueryDto) {
+        Page<RiskStudent> riskStudentPage = new Page<>(baseQueryDto.getPage(), baseQueryDto.getPageSize());
+        Page<RiskStudent> riskStudent = temperatureMapper.getRiskStudent(riskStudentPage);
+        return PageUtil.getPageData(riskStudent);
+    }
 }
 
 

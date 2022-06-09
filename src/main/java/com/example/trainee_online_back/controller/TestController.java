@@ -2,25 +2,21 @@ package com.example.trainee_online_back.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.example.trainee_online_back.Interceptor.UserInfoInterceptor;
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
 import com.example.trainee_online_back.entity.User;
-import com.example.trainee_online_back.mapper.AdminUserMapper;
 import com.example.trainee_online_back.mapper.UserMapper;
+import com.example.trainee_online_back.service.TemperatureService;
 import com.example.trainee_online_back.service.UserService;
 import com.example.trainee_online_back.utils.PageUtil;
 import com.example.trainee_online_back.utils.RedisCache;
+import com.example.trainee_online_back.utils.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -38,6 +34,8 @@ public class TestController {
     private UserMapper userMapper;
     @Autowired
     private UserService userService;
+    @Autowired
+    private TemperatureService temperatureService;
 
     /**
      * @desc: 测试redis的使用
@@ -101,5 +99,17 @@ public class TestController {
         userMapper.deleteById(1);
         User user1 = userMapper.selectById(1);
         System.out.println(user1);
+    }
+    /**
+     * @description: 分页查询所有风险学生
+     * @author wangyangyang
+     * @date: 2022/6/9 13:42
+     * @return
+     */
+    @RequestMapping("/test6")
+    public JSONObject test6(@RequestBody BaseQueryDto baseQueryDto) {
+        JSONObject riskStudent = temperatureService.getRiskStudent(baseQueryDto);
+        System.out.println(riskStudent);
+        return ResponseUtil.returnSuccess("所有风险学生",riskStudent);
     }
 }

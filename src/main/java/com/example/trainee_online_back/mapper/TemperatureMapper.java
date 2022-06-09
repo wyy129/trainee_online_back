@@ -1,7 +1,9 @@
 package com.example.trainee_online_back.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.trainee_online_back.entity.Temperature;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.trainee_online_back.entity.Vo.RiskStudent;
 
 /**
 * @author wangyangyang
@@ -11,6 +13,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface TemperatureMapper extends BaseMapper<Temperature> {
 
+    Page<RiskStudent> getRiskStudent(Page<RiskStudent> riskStudentPage );
 }
 
 

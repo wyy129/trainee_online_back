@@ -20,4 +20,11 @@
         temperature_value,temperature_address,temperature_symptom,
         temperature_creadeTime,deleted
     </sql>
+    <select id="getRiskStudent" resultType="com.example.trainee_online_back.entity.Vo.RiskStudent">
+        SELECT
+            t.temperature_id,t.temperature_value,t.temperature_address,t.temperature_symptom,t.temperature_creadeTime,u.id as userid,u.name,u.phone
+        FROM
+            temperature t
+                LEFT JOIN user u ON t.user_id = u.id AND t.is_risk = '1'
+    </select>
 </mapper>
