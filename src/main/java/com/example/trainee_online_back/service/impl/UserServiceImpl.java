@@ -29,6 +29,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Autowired
     private RedisCache redisCache;
 
+    /**
+     * @description: 校验用户名和密码，获取token
+     * @author wangyangyang
+     * @date: 2022/6/9 12:31
+     */
     @Override
     public String login(String username, String password, String uuid) {
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
@@ -43,7 +48,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         redisCache.setCacheObject("user_" + userid + "token", token, 20, TimeUnit.MINUTES);
         return token;
     }
-
+    /**
+     * @description: 根据用户id获取用户信息
+     * @author wangyangyang
+     * @date: 2022/6/8 13:10
+     */
     @Override
     public User getUserByUsername(String username) {
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
@@ -51,7 +60,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         return userMapper.selectOne(userQueryWrapper);
 
     }
-
+    /**
+     * @description: 分页获取所有学生信息
+     * @author wangyangyang
+     * @date: 2022/6/9 11:22
+     */
     @Override
     public Page<User> getAllStudent(BaseQueryDto baseQueryDto) {
         Page<User> userPage = new Page<>(Optional.ofNullable(baseQueryDto.getPage()).orElse(1L), Optional.ofNullable(baseQueryDto.getPageSize()).orElse(20L));
