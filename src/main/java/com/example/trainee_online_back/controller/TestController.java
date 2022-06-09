@@ -101,7 +101,7 @@ public class TestController {
         System.out.println(user1);
     }
     /**
-     * @description: 分页查询所有风险学生（，测试一下git，一会删除）
+     * @description: 分页查询所有风险学生
      * @author wangyangyang
      * @date: 2022/6/9 13:42
      * @return
