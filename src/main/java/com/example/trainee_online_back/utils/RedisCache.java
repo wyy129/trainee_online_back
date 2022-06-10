@@ -14,10 +14,10 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 
 /**
- * spring redis 工具类
- *
- * @author ruoyi
- **/
+ * @description: spring reids工具类
+ * @author wangyangyang
+ * @date: 2022/6/10 8:34
+ */
 @SuppressWarnings(value = { "unchecked", "rawtypes" })
 @Component
 public class RedisCache

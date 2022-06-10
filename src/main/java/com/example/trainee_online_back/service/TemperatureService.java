@@ -20,7 +20,7 @@ public interface TemperatureService extends IService<Temperature> {
      */
     JSONObject getRiskStudent(BaseQueryDto baseQueryDto);
     /**
-     * @description: 根据id删除风险学生
+     * @description: 根据用户id删除风险学生体温记录
      * @author wangyangyang
      * @date: 2022/6/10 8:31
      * @return: 返回删除的条数
