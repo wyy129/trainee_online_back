@@ -9,10 +9,15 @@
             <result property="userId" column="user_id" jdbcType="INTEGER"/>
             <result property="projectName" column="project_name" jdbcType="VARCHAR"/>
             <result property="projectContent" column="project_content" jdbcType="VARCHAR"/>
+            <result property="createdBy" column="CREATED_BY" jdbcType="VARCHAR"/>
+            <result property="createdTime" column="CREATED_TIME" jdbcType="TIMESTAMP"/>
+            <result property="updatedBy" column="UPDATED_BY" jdbcType="VARCHAR"/>
+            <result property="updatedTime" column="UPDATED_TIME" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         project_id,user_id,project_name,
-        project_content
+        project_content,CREATED_BY,CREATED_TIME,
+        UPDATED_BY,UPDATED_TIME
     </sql>
 </mapper>
