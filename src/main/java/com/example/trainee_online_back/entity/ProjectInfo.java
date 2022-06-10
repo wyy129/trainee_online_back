@@ -37,6 +37,11 @@ public class ProjectInfo implements Serializable {
     private String projectContent;
 
     /**
+     * 对应专业id
+     */
+    private Integer majorId;
+
+    /**
      * 创建人
      */
     private String createdBy;
@@ -75,6 +80,7 @@ public class ProjectInfo implements Serializable {
             && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
             && (this.getProjectName() == null ? other.getProjectName() == null : this.getProjectName().equals(other.getProjectName()))
             && (this.getProjectContent() == null ? other.getProjectContent() == null : this.getProjectContent().equals(other.getProjectContent()))
+            && (this.getMajorId() == null ? other.getMajorId() == null : this.getMajorId().equals(other.getMajorId()))
             && (this.getCreatedBy() == null ? other.getCreatedBy() == null : this.getCreatedBy().equals(other.getCreatedBy()))
             && (this.getCreatedTime() == null ? other.getCreatedTime() == null : this.getCreatedTime().equals(other.getCreatedTime()))
             && (this.getUpdatedBy() == null ? other.getUpdatedBy() == null : this.getUpdatedBy().equals(other.getUpdatedBy()))
@@ -89,6 +95,7 @@ public class ProjectInfo implements Serializable {
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getProjectName() == null) ? 0 : getProjectName().hashCode());
         result = prime * result + ((getProjectContent() == null) ? 0 : getProjectContent().hashCode());
+        result = prime * result + ((getMajorId() == null) ? 0 : getMajorId().hashCode());
         result = prime * result + ((getCreatedBy() == null) ? 0 : getCreatedBy().hashCode());
         result = prime * result + ((getCreatedTime() == null) ? 0 : getCreatedTime().hashCode());
         result = prime * result + ((getUpdatedBy() == null) ? 0 : getUpdatedBy().hashCode());
@@ -106,6 +113,7 @@ public class ProjectInfo implements Serializable {
         sb.append(", userId=").append(userId);
         sb.append(", projectName=").append(projectName);
         sb.append(", projectContent=").append(projectContent);
+        sb.append(", majorId=").append(majorId);
         sb.append(", createdBy=").append(createdBy);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", updatedBy=").append(updatedBy);
