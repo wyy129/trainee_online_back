@@ -1,5 +1,7 @@
 package com.example.trainee_online_back.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.trainee_online_back.entity.Dto.GetProjectDTO;
 import com.example.trainee_online_back.entity.ProjectInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -39,5 +41,5 @@ public interface ProjectInfoService extends IService<ProjectInfo> {
      * @date: 2022/6/10 16:46
      * @return: 列表集合
      */
-    void getProject();
+    Page<ProjectInfo> getProject(GetProjectDTO getProjectDTO);
 }
