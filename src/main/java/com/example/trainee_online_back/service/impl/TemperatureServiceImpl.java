@@ -29,6 +29,16 @@ public class TemperatureServiceImpl extends ServiceImpl<TemperatureMapper, Tempe
         Page<RiskStudent> riskStudent = temperatureMapper.getRiskStudent(riskStudentPage);
         return PageUtil.getPageData(riskStudent);
     }
+
+    @Override
+    public Integer deleteRiskStudentById(Integer id) {
+        QueryWrapper<Temperature> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id",id);
+        queryWrapper.eq("deleted",0);
+        queryWrapper.eq("is_risk","1");
+        int delete_num = temperatureMapper.delete(queryWrapper);
+        return delete_num;
+    }
 }
 
 

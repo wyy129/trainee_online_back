@@ -13,5 +13,17 @@ import com.example.trainee_online_back.entity.Vo.RiskStudent;
 * @createDate 2022-06-08 10:43:31
 */
 public interface TemperatureService extends IService<Temperature> {
+    /**
+     * @description: 分页获取所有风险学生
+     * @author wangyangyang
+     * @date: 2022/6/10 8:29
+     */
     JSONObject getRiskStudent(BaseQueryDto baseQueryDto);
+    /**
+     * @description: 根据id删除风险学生
+     * @author wangyangyang
+     * @date: 2022/6/10 8:31
+     * @return: 返回删除的条数
+     */
+    Integer deleteRiskStudentById(Integer id);
 }
