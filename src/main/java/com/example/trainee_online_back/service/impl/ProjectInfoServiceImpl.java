@@ -60,7 +60,7 @@ public class ProjectInfoServiceImpl extends ServiceImpl<ProjectInfoMapper, Proje
     }
 
     /**
-     * @description: 根据专业id，分页获取毕设信息（可以添加用户id，目的是 老师可以获取自己发布的毕设）
+     * @description: 根据专业id，分页获取毕设信息（添加用户id，目的是 老师可以获取自己发布的毕设）
      * @author wangyangyang
      * @date: 2022/6/13 9:24
      * @return:
@@ -69,7 +69,9 @@ public class ProjectInfoServiceImpl extends ServiceImpl<ProjectInfoMapper, Proje
     public JSONObject getProject(GetProjectDTO getProjectDTO) {
         QueryWrapper queryWrapper = new QueryWrapper();
         Integer majorId = getProjectDTO.getMajorId();
+        Integer userId = getProjectDTO.getUserId();
         queryWrapper.eq((majorId != null), "major_id", majorId);
+        queryWrapper.eq((userId != null), "major_id", majorId);
         Page<ProjectInfo> projectInfoPage = new Page<>();
         return PageUtil.getPageData(projectInfoMapper.selectPage(projectInfoPage, queryWrapper));
     }

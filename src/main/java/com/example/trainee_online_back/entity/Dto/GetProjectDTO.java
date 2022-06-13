@@ -17,5 +17,12 @@ public class GetProjectDTO extends BaseQueryDto {
      * @return:
      */
     private Integer majorId;
+    /**
+     * @description: （教师）用户id
+     * @author wangyangyang
+     * @date: 2022/6/13 17:23
+     * @return:
+     */
+    private Integer userId;
 
 }

@@ -1,6 +1,8 @@
 package com.example.trainee_online_back.Aspect;
 
-import com.example.trainee_online_back.annotation.Token;
+import com.example.trainee_online_back.annotation.Role;
+import com.example.trainee_online_back.exception.BasicInfoException;
+import com.example.trainee_online_back.utils.RequestUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -13,8 +15,8 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 @SuppressWarnings({"unused"})
-public class TestAs {
-    @Pointcut("@annotation(com.example.trainee_online_back.annotation.Token)")
+public class Permissions {
+    @Pointcut("@annotation(com.example.trainee_online_back.annotation.Role)")
     public void annotationPointcut() {
 
     }
@@ -25,12 +27,11 @@ public class TestAs {
 
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
-
+        String roleid = RequestUtil.getTLUserRole().toString();
         //获取自定义注解上的值
-        Token Token = method.getAnnotation(Token.class);
-        String value = Token.value();
-        if (value.equals("123")) {
-            throw new RuntimeException();
+        String role = method.getAnnotation(Role.class).value();
+        if (!role.equals(roleid)) {
+            throw new BasicInfoException("用户权限不对应");
         }
 
     }
