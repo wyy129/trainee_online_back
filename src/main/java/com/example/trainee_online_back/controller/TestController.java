@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
 import com.example.trainee_online_back.entity.Dto.GetProjectDTO;
+import com.example.trainee_online_back.entity.InternshipWork;
 import com.example.trainee_online_back.entity.User;
+import com.example.trainee_online_back.mapper.InternshipWorkMapper;
 import com.example.trainee_online_back.mapper.UserMapper;
 import com.example.trainee_online_back.service.ProjectInfoService;
 import com.example.trainee_online_back.service.TemperatureService;
@@ -40,6 +42,8 @@ public class TestController {
     private TemperatureService temperatureService;
     @Autowired
     private ProjectInfoService projectInfoService;
+    @Autowired
+    private InternshipWorkMapper internshipWorkMapper;
 
     /**
      * @desc: 测试redis的使用
@@ -130,5 +134,18 @@ public class TestController {
         JSONObject project = projectInfoService.getProject(getProjectDTOo);
         System.out.println(project);
         return ResponseUtil.returnSuccess("信息", project);
+    }
+
+    /**
+     * @description: 测试时间格式
+     * @author wangyangyang
+     * @date: 2022/6/13 13:39
+     * @return:
+     */
+    @RequestMapping("/test8")
+    public JSONObject test8() {
+        List<InternshipWork> internshipWorks = internshipWorkMapper.selectList(null);
+        System.out.println(internshipWorks);
+        return ResponseUtil.returnSuccess("",internshipWorks);
     }
 }

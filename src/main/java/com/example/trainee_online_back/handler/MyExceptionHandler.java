@@ -1,9 +1,9 @@
-package com.example.trainee_online_back.exception;
+package com.example.trainee_online_back.handler;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.trainee_online_back.exception.BasicInfoException;
 import com.example.trainee_online_back.utils.ResponseUtil;
-import net.sf.jsqlparser.util.validation.ValidationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;

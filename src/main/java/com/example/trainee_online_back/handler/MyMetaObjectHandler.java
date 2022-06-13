@@ -7,6 +7,8 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.Date;
+
 
 /**
  * @author wangyangyang
@@ -20,7 +22,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     public void insertFill(MetaObject metaObject) {
         log.info("start insert fill ....");
         String userid = RequestUtil.getTLUserId().toString();
-        this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now());
+        this.strictInsertFill(metaObject, "createdTime", Date.class, new Date());
         this.strictInsertFill(metaObject, "createdBy", String.class, userid);
     }
 
@@ -28,7 +30,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     public void updateFill(MetaObject metaObject) {
         log.info("start update fill ....");
         String userid = RequestUtil.getTLUserId().toString();
-        this.strictUpdateFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
+        this.strictUpdateFill(metaObject, "updatedTime", Date.class, new Date());
         this.strictInsertFill(metaObject, "updateBy", String.class, userid);
 
     }

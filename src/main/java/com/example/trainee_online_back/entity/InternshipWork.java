@@ -30,7 +30,6 @@ public class InternshipWork implements Serializable {
      */
     @TableField(fill = FieldFill.INSERT)
     private Date createdTime;
-
     /**
      * 更新人
      */

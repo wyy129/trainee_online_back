@@ -25,7 +25,7 @@ spring:
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver
     username: root
     password: Waimou..
-    url: jdbc:p6spy:mysql://101.43.217.252:3306/dev_tr?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:p6spy:mysql://101.43.217.252:3306/dev_tr?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
 server:
   port: 9000
 mybatis-plus:
