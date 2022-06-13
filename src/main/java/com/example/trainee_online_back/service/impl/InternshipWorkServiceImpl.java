@@ -60,13 +60,13 @@ public class InternshipWorkServiceImpl extends ServiceImpl<InternshipWorkMapper,
     }
 
     /**
-     * @description: 根据用户id获取周记id
+     * @description: 根据用户id获取所有周记id
      * @author wangyangyang
      * @date: 2022/6/13 10:41
      * @return: 周记列表
      */
     @Override
-    public List<InternshipWork> getInternshipByUserId(Integer userid) {
+    public List<InternshipWork> getAllInternshipByUserId(Integer userid) {
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.eq("user_id", userid);
         return internshipWorkMapper.selectList(queryWrapper);

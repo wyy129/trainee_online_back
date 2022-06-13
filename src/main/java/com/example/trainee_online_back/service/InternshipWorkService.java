@@ -36,10 +36,10 @@ public interface InternshipWorkService extends IService<InternshipWork> {
     int updateInternshipById(InternshipWork internshipWork);
 
     /**
-     * @description: 根据用户id获取周记id
+     * @description: 根据用户id获取所有周记id
      * @author wangyangyang
      * @date: 2022/6/13 10:41
      * @return: 周记列表
      */
-    List<InternshipWork> getInternshipByUserId(Integer userid);
+    List<InternshipWork> getAllInternshipByUserId(Integer userid);
 }

@@ -8,12 +8,14 @@ import com.example.trainee_online_back.service.InternshipWorkService;
 import com.example.trainee_online_back.utils.RequestUtil;
 import com.example.trainee_online_back.utils.ResponseUtil;
 import com.example.trainee_online_back.utils.StringUtils;
+import com.example.trainee_online_back.utils.VerifyUserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,12 +42,10 @@ public class InternshipWorkController {
         String workTitle = internshipWork.getWorkTitle();
         String workContent = internshipWork.getWorkContent();
         Integer userId = internshipWork.getUserId();
-        if (StringUtils.isEmpty(workContent) || StringUtils.isEmpty(workTitle) || "".equals(userId)) {
+        if (StringUtils.isEmpty(workContent) || StringUtils.isEmpty(workTitle) || "".equals(userId.toString())) {
             throw new ParameterException("参数不能未空");
         }
-        if (!RequestUtil.getTLUserId().toString().equals(userId.toString())) {
-            throw new ParameterException("操作用户和被修改信息用户不相同");
-        }
+        VerifyUserUtil.verifyOperationUser(userId.toString());
         int i = internshipWorkService.addInternship(internshipWork);
         if (i == 1) {
             return ResponseUtil.returnSuccess("成功添加1条数据", i);
@@ -72,4 +72,42 @@ public class InternshipWorkController {
         return ResponseUtil.returnSuccess("删除成功", i);
     }
 
+    /**
+     * @description: 更新周记表（根据周记id）
+     * @author wangyangyang
+     * @date: 2022/6/13 15:31
+     * @return: 更新条数
+     */
+    @RequestMapping("/updateinternshipwork")
+    public JSONObject updateInternshipWork(@RequestBody InternshipWork internshipWork) {
+        System.out.println(internshipWork);
+        String workTitle = internshipWork.getWorkTitle();
+        String workContent = internshipWork.getWorkContent();
+        Integer workId = internshipWork.getWorkId();
+        Integer userId = internshipWork.getUserId();
+        if (StringUtils.isEmpty(workContent) || StringUtils.isEmpty(workTitle) || "".equals(userId.toString()) || "".equals(workId.toString())) {
+            throw new ParameterException("参数不能未空");
+        }
+        VerifyUserUtil.verifyOperationUser(userId.toString());
+        int i = internshipWorkService.updateInternshipById(internshipWork);
+        if (i == 1) {
+            return ResponseUtil.returnSuccess("成功更新1条数据", i);
+        }
+        return ResponseUtil.returnFail("添加失败", i);
+    }
+
+    /**
+     * @description: 根据用户id获取所有周记列表
+     * @author wangyangyang
+     * @date: 2022/6/13 15:48
+     * @return: 所有周记列表
+     */
+    @RequestMapping("/getallinternshipworkbyuserid")
+    public JSONObject getAllInternshipWorkByUserId(@RequestBody Map map) {
+        Integer userId = Integer.valueOf(map.get("userId").toString());
+        VerifyUserUtil.verifyOperationUser(userId.toString());
+        List<InternshipWork> allInternship = internshipWorkService.getAllInternshipByUserId(userId);
+        return ResponseUtil.returnSuccess("所有周记列表", allInternship);
+
+    }
 }
