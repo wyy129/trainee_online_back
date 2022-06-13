@@ -13,6 +13,8 @@ import com.example.trainee_online_back.utils.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 /**
  * @author wangyangyang
  * @description 针对表【temperature(体温表)】的数据库操作Service实现
@@ -31,7 +33,7 @@ public class TemperatureServiceImpl extends ServiceImpl<TemperatureMapper, Tempe
      */
     @Override
     public JSONObject getRiskStudent(BaseQueryDto baseQueryDto) {
-        Page<RiskStudent> riskStudentPage = new Page<>(baseQueryDto.getPage(), baseQueryDto.getPageSize());
+        Page<RiskStudent> riskStudentPage = new Page<>(Optional.ofNullable(baseQueryDto.getPage()).orElse(1L), Optional.ofNullable(baseQueryDto.getPageSize()).orElse(20L));
         Page<RiskStudent> riskStudent = temperatureMapper.getRiskStudent(riskStudentPage);
         return PageUtil.getPageData(riskStudent);
     }
