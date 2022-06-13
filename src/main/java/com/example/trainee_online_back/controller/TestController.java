@@ -3,8 +3,10 @@ package com.example.trainee_online_back.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
+import com.example.trainee_online_back.entity.Dto.GetProjectDTO;
 import com.example.trainee_online_back.entity.User;
 import com.example.trainee_online_back.mapper.UserMapper;
+import com.example.trainee_online_back.service.ProjectInfoService;
 import com.example.trainee_online_back.service.TemperatureService;
 import com.example.trainee_online_back.service.UserService;
 import com.example.trainee_online_back.utils.PageUtil;
@@ -36,6 +38,8 @@ public class TestController {
     private UserService userService;
     @Autowired
     private TemperatureService temperatureService;
+    @Autowired
+    private ProjectInfoService projectInfoService;
 
     /**
      * @desc: 测试redis的使用
@@ -87,6 +91,7 @@ public class TestController {
         System.out.println(pageData);
 
     }
+
     /**
      * @description: 测试mybatis-plus逻辑删除
      * @author wangyangyang
@@ -100,16 +105,30 @@ public class TestController {
         User user1 = userMapper.selectById(1);
         System.out.println(user1);
     }
+
     /**
+     * @return
      * @description: 分页查询所有风险学生
      * @author wangyangyang
      * @date: 2022/6/9 13:42
-     * @return
      */
     @RequestMapping("/test6")
     public JSONObject test6(@RequestBody BaseQueryDto baseQueryDto) {
         JSONObject riskStudent = temperatureService.getRiskStudent(baseQueryDto);
         System.out.println(riskStudent);
-        return ResponseUtil.returnSuccess("所有风险学生",riskStudent);
+        return ResponseUtil.returnSuccess("所有风险学生", riskStudent);
+    }
+
+    /**
+     * @return
+     * @description: 分页根据条件查询毕设信息
+     * @author wangyangyang
+     * @date: 2022/6/9 13:42
+     */
+    @RequestMapping("/test7")
+    public JSONObject test7(@RequestBody GetProjectDTO getProjectDTOo) {
+        JSONObject project = projectInfoService.getProject(getProjectDTOo);
+        System.out.println(project);
+        return ResponseUtil.returnSuccess("信息", project);
     }
 }

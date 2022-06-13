@@ -1,6 +1,6 @@
 package com.example.trainee_online_back.service;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.alibaba.fastjson.JSONObject;
 import com.example.trainee_online_back.entity.Dto.GetProjectDTO;
 import com.example.trainee_online_back.entity.ProjectInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -36,10 +36,10 @@ public interface ProjectInfoService extends IService<ProjectInfo> {
     int updateProjectInfo(ProjectInfo projectInfo);
 
     /**
-     * @description: 获取毕设列表-----未完成
+     * @description: 根据专业id，分页获取毕设信息（可以添加用户id，目的是 老师可以获取自己发布的毕设）
      * @author wangyangyang
      * @date: 2022/6/10 16:46
      * @return: 列表集合
      */
-    Page<ProjectInfo> getProject(GetProjectDTO getProjectDTO);
+    JSONObject getProject(GetProjectDTO getProjectDTO);
 }

@@ -1,13 +1,14 @@
 package com.example.trainee_online_back.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.trainee_online_back.entity.Dto.GetProjectDTO;
 import com.example.trainee_online_back.entity.ProjectInfo;
 import com.example.trainee_online_back.service.ProjectInfoService;
 import com.example.trainee_online_back.mapper.ProjectInfoMapper;
+import com.example.trainee_online_back.utils.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,17 +39,18 @@ public class ProjectInfoServiceImpl extends ServiceImpl<ProjectInfoMapper, Proje
     }
 
     /**
-     * @desc: 未完成！！！！！！！
-     * @author: wyy
-     * @date: 2022-06-10 21:00:50
+     * @description: 根据专业id，分页获取毕设信息（可以添加用户id，目的是 老师可以获取自己发布的毕设）
+     * @author wangyangyang
+     * @date: 2022/6/13 9:24
      * @return:
-     **/
+     */
     @Override
-    public Page<ProjectInfo> getProject(GetProjectDTO getProjectDTO) {
+    public JSONObject getProject(GetProjectDTO getProjectDTO) {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.eq("major_id", getProjectDTO.getMajorId());
+        Integer majorId = getProjectDTO.getMajorId();
+        queryWrapper.eq((majorId != null), "major_id", majorId);
         Page<ProjectInfo> projectInfoPage = new Page<>();
-        return projectInfoMapper.selectPage(projectInfoPage, queryWrapper);
+        return PageUtil.getPageData(projectInfoMapper.selectPage(projectInfoPage, queryWrapper));
     }
 }
 
