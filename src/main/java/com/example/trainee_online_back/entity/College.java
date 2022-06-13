@@ -9,6 +9,7 @@ import lombok.Data;
 
 /**
  * 学院表
+ * @author wyy
  * @TableName college
  */
 @TableName(value ="college")
@@ -17,7 +18,7 @@ public class College implements Serializable {
     /**
      * 学院id
      */
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Integer collegeId;
 
     /**
