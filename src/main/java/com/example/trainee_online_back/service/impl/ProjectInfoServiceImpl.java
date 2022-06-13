@@ -23,19 +23,40 @@ public class ProjectInfoServiceImpl extends ServiceImpl<ProjectInfoMapper, Proje
     @Autowired
     private ProjectInfoMapper projectInfoMapper;
 
+    /**
+     * @description: 添加毕设信息
+     * @author wangyangyang
+     * @date: 2022/6/13 10:11
+     * @return: 添加的条数
+     */
     @Override
     public int addProjectInfo(ProjectInfo projectInfo) {
         return projectInfoMapper.insert(projectInfo);
     }
 
+    /**
+     * @description: 根据毕设信息id删除毕设
+     * @author wangyangyang
+     * @date: 2022/6/13 10:12
+     * @return: 删除的条数
+     */
     @Override
     public int deleteProjectInfoById(Integer project_info_id) {
         return projectInfoMapper.deleteById(project_info_id);
     }
 
+    /**
+     * @description: 更新毕设信息
+     * @author wangyangyang
+     * @date: 2022/6/13 10:13
+     * @return: 更新的条数
+     */
     @Override
     public int updateProjectInfo(ProjectInfo projectInfo) {
-        return projectInfoMapper.updateById(projectInfo);
+        Integer projectId = projectInfo.getProjectId();
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("project_id", projectId);
+        return projectInfoMapper.update(projectInfo, queryWrapper);
     }
 
     /**
