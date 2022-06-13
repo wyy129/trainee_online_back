@@ -2,6 +2,7 @@ package com.example.trainee_online_back.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.trainee_online_back.entity.Dto.GetProjectDTO;
@@ -11,6 +12,8 @@ import com.example.trainee_online_back.mapper.ProjectInfoMapper;
 import com.example.trainee_online_back.utils.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * @author wangyangyang
@@ -72,8 +75,8 @@ public class ProjectInfoServiceImpl extends ServiceImpl<ProjectInfoMapper, Proje
         Integer userId = getProjectDTO.getUserId();
         queryWrapper.eq((majorId != null), "major_id", majorId);
         queryWrapper.eq((userId != null), "major_id", majorId);
-        Page<ProjectInfo> projectInfoPage = new Page<>();
-        return PageUtil.getPageData(projectInfoMapper.selectPage(projectInfoPage, queryWrapper));
+        Page page = new Page(Optional.ofNullable(getProjectDTO.getPage()).orElse(1L), Optional.ofNullable(getProjectDTO.getPageSize()).orElse(20L));
+        return PageUtil.getPageData(projectInfoMapper.selectPage(page, queryWrapper));
     }
 }
 

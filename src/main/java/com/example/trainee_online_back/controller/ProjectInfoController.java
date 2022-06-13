@@ -61,14 +61,14 @@ public class ProjectInfoController {
      */
     @RequestMapping("/deleteprojectinfobyid")
     public JSONObject deleteProjectInfoById(@RequestBody Map map) {
-        String projcetinfoid = map.get("projcetinfoid").toString();
+        String projectInfoId = map.get("projectInfoId").toString();
         String userid = map.get("userid").toString();
-        if (StringUtils.isEmpty(projcetinfoid)) {
+        if (StringUtils.isEmpty(projectInfoId) || StringUtils.isEmpty(userid)) {
             throw new ParameterException("参数不能为空");
         }
         VerifyUserUtil.verifyOperationUser(userid);
-        int i = projectInfoService.deleteProjectInfoById(Integer.valueOf(projcetinfoid));
-        return ResponseUtil.returnSuccess("删除1条", i);
+        int i = projectInfoService.deleteProjectInfoById(Integer.valueOf(projectInfoId));
+        return ResponseUtil.returnSuccess("删除i条", i);
     }
 
     /**
@@ -88,7 +88,7 @@ public class ProjectInfoController {
         }
         VerifyUserUtil.verifyOperationUser(userId);
         int i = projectInfoService.updateProjectInfo(projectInfo);
-        return ResponseUtil.returnSuccess("更新成功1条", i);
+        return ResponseUtil.returnSuccess("更新成功i条", i);
     }
 
     /**
