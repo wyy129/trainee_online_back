@@ -54,18 +54,18 @@ public class InternshipWorkController {
     }
 
     /**
-     * @description: 根据周记id删除周记（有个坑，只要是登录用户就可以伪造删除任意周记。解决方法：先根据周记id查询出来属于用户的id，和线程用户id进行匹配）
+     * @description: 根据周记id删除周记(解决问题，在Impl里面获取当前线程用户id，增加删除条件)
      * @author wangyangyang
      * @date: 2022/6/13 15:00
      * @return: 删除条数
      */
     @RequestMapping("/deleteinternshipworkbyid")
     public JSONObject deleteInternshipWorkById(@RequestBody Map map) {
-        Integer internshipworkId = Integer.valueOf(map.get("internshipworkId").toString());
-        if ("".equals(internshipworkId)) {
+        Integer internshipWorkId = Integer.valueOf(map.get("internshipWorkId").toString());
+        if ("".equals(internshipWorkId.toString())) {
             throw new ParameterException("删除id不能为空");
         }
-        int i = internshipWorkService.deleteInternshipById(internshipworkId);
+        int i = internshipWorkService.deleteInternshipById(internshipWorkId);
         if (i != 1) {
             return ResponseUtil.returnFail("删除错误", i);
         }

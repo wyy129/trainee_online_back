@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.trainee_online_back.entity.InternshipWork;
 import com.example.trainee_online_back.service.InternshipWorkService;
 import com.example.trainee_online_back.mapper.InternshipWorkMapper;
+import com.example.trainee_online_back.utils.RequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,8 +42,10 @@ public class InternshipWorkServiceImpl extends ServiceImpl<InternshipWorkMapper,
      */
     @Override
     public int deleteInternshipById(Integer internshipId) {
-
-        return internshipWorkMapper.deleteById(internshipId);
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("user_id", RequestUtil.getTLUserId());
+        queryWrapper.eq("work_id", internshipId);
+        return internshipWorkMapper.delete(queryWrapper);
     }
 
     /**
