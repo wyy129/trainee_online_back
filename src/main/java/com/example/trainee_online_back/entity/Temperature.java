@@ -4,13 +4,15 @@ import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import lombok.Data;
 
 /**
  * 体温表
+ *
  * @TableName temperature
  */
-@TableName(value ="temperature")
+@TableName(value = "temperature")
 @Data
 public class Temperature implements Serializable {
     /**
@@ -47,6 +49,7 @@ public class Temperature implements Serializable {
     /**
      * 创建时间
      */
+    @TableField(fill = FieldFill.INSERT)
     private Date temperatureCreadetime;
 
     /**
@@ -71,13 +74,13 @@ public class Temperature implements Serializable {
         }
         Temperature other = (Temperature) that;
         return (this.getTemperatureId() == null ? other.getTemperatureId() == null : this.getTemperatureId().equals(other.getTemperatureId()))
-            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
-            && (this.getIsRisk() == null ? other.getIsRisk() == null : this.getIsRisk().equals(other.getIsRisk()))
-            && (this.getTemperatureValue() == null ? other.getTemperatureValue() == null : this.getTemperatureValue().equals(other.getTemperatureValue()))
-            && (this.getTemperatureAddress() == null ? other.getTemperatureAddress() == null : this.getTemperatureAddress().equals(other.getTemperatureAddress()))
-            && (this.getTemperatureSymptom() == null ? other.getTemperatureSymptom() == null : this.getTemperatureSymptom().equals(other.getTemperatureSymptom()))
-            && (this.getTemperatureCreadetime() == null ? other.getTemperatureCreadetime() == null : this.getTemperatureCreadetime().equals(other.getTemperatureCreadetime()))
-            && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted()));
+                && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
+                && (this.getIsRisk() == null ? other.getIsRisk() == null : this.getIsRisk().equals(other.getIsRisk()))
+                && (this.getTemperatureValue() == null ? other.getTemperatureValue() == null : this.getTemperatureValue().equals(other.getTemperatureValue()))
+                && (this.getTemperatureAddress() == null ? other.getTemperatureAddress() == null : this.getTemperatureAddress().equals(other.getTemperatureAddress()))
+                && (this.getTemperatureSymptom() == null ? other.getTemperatureSymptom() == null : this.getTemperatureSymptom().equals(other.getTemperatureSymptom()))
+                && (this.getTemperatureCreadetime() == null ? other.getTemperatureCreadetime() == null : this.getTemperatureCreadetime().equals(other.getTemperatureCreadetime()))
+                && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted()));
     }
 
     @Override

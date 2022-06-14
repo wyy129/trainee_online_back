@@ -38,6 +38,11 @@ public class TemperatureServiceImpl extends ServiceImpl<TemperatureMapper, Tempe
         return PageUtil.getPageData(riskStudent);
     }
 
+    @Override
+    public int addTemperature(Temperature temperature) {
+        return temperatureMapper.insert(temperature);
+    }
+
     /**
      * @description: 根据用户id删除风险学生体温记录
      * @author wangyangyang
@@ -45,13 +50,12 @@ public class TemperatureServiceImpl extends ServiceImpl<TemperatureMapper, Tempe
      * @return: 返回删除的条数
      */
     @Override
-    public Integer deleteRiskStudentById(Integer id) {
+    public int deleteRiskStudentByUserId(Integer id) {
         QueryWrapper<Temperature> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_id", id);
         queryWrapper.eq("deleted", 0);
         queryWrapper.eq("is_risk", "1");
-        int delete_num = temperatureMapper.delete(queryWrapper);
-        return delete_num;
+        return temperatureMapper.delete(queryWrapper);
     }
 }
 

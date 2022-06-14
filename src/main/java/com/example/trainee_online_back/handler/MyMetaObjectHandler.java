@@ -23,6 +23,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         log.info("start insert fill ....");
         String userid = RequestUtil.getTLUserId().toString();
         this.strictInsertFill(metaObject, "createdTime", Date.class, new Date());
+        this.strictInsertFill(metaObject, "temperatureCreadetime", Date.class, new Date());
         this.strictInsertFill(metaObject, "createdBy", String.class, userid);
     }
 
