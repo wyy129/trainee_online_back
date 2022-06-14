@@ -5,14 +5,14 @@
 <mapper namespace="com.example.trainee_online_back.mapper.TemperatureMapper">
 
     <resultMap id="BaseResultMap" type="com.example.trainee_online_back.entity.Temperature">
-            <id property="temperatureId" column="temperature_id" jdbcType="INTEGER"/>
-            <result property="userId" column="user_id" jdbcType="INTEGER"/>
-            <result property="isRisk" column="is_risk" jdbcType="VARCHAR"/>
-            <result property="temperatureValue" column="temperature_value" jdbcType="VARCHAR"/>
-            <result property="temperatureAddress" column="temperature_address" jdbcType="VARCHAR"/>
-            <result property="temperatureSymptom" column="temperature_symptom" jdbcType="VARCHAR"/>
-            <result property="temperatureCreadetime" column="temperature_creadeTime" jdbcType="TIMESTAMP"/>
-            <result property="deleted" column="deleted" jdbcType="INTEGER"/>
+        <id property="temperatureId" column="temperature_id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="isRisk" column="is_risk" jdbcType="VARCHAR"/>
+        <result property="temperatureValue" column="temperature_value" jdbcType="VARCHAR"/>
+        <result property="temperatureAddress" column="temperature_address" jdbcType="VARCHAR"/>
+        <result property="temperatureSymptom" column="temperature_symptom" jdbcType="VARCHAR"/>
+        <result property="temperatureCreadetime" column="temperature_creadeTime" jdbcType="TIMESTAMP"/>
+        <result property="deleted" column="deleted" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -21,10 +21,16 @@
         temperature_creadeTime,deleted
     </sql>
     <select id="getRiskStudent" resultType="com.example.trainee_online_back.entity.Vo.RiskStudent">
-        SELECT
-            t.temperature_id,t.temperature_value,t.temperature_address,t.temperature_symptom,t.temperature_creadeTime,u.id as userid,u.name,u.phone
-        FROM
-            temperature t
-                LEFT JOIN user u ON t.user_id = u.id AND t.is_risk = '1'
+        SELECT t.temperature_id,
+               t.temperature_value,
+               t.temperature_address,
+               t.temperature_symptom,
+               t.temperature_creadeTime,
+               u.id AS userid,
+               u.NAME,
+               u.phone
+        FROM temperature t
+                 INNER JOIN user u ON t.user_id = u.id
+            AND t.is_risk = '1'
     </select>
 </mapper>
