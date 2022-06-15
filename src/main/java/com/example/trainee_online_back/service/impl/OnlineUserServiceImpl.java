@@ -14,11 +14,11 @@ public class OnlineUserServiceImpl implements OnlineUserService {
     private RedisCache redisCache;
 
     @Override
-    public void getAllOnlineUser(BaseQueryDto baseQueryDto) {
+    public Collection<String> getAllOnlineUser(BaseQueryDto baseQueryDto) {
         Collection<String> keys = redisCache.keys("user" + "*");
 //        List<User> subList = list.stream().skip((pageNo-1)*pageSize).limit(pageSize).
 //                collect(Collectors.toList());
         System.out.println(keys);
-
+        return keys;
     }
 }

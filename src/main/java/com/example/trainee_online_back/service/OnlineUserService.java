@@ -1,7 +1,8 @@
 package com.example.trainee_online_back.service;
 
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
-import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 
 /**
  * @description: 在线用户接口
@@ -10,5 +11,5 @@ import org.springframework.stereotype.Service;
  * @return:
  */
 public interface OnlineUserService {
-    void getAllOnlineUser(BaseQueryDto baseQueryDto);
+    Collection<String> getAllOnlineUser(BaseQueryDto baseQueryDto);
 }
