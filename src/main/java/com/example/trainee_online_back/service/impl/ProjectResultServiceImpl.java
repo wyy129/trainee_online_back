@@ -40,7 +40,10 @@ public class ProjectResultServiceImpl extends ServiceImpl<ProjectResultMapper, P
      */
     @Override
     public int updateProjectResult(ProjectResult projectResult) {
-        return projectResultMapper.updateById(projectResult);
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("user_id", projectResult.getUserId());
+        queryWrapper.eq("project_info_id", projectResult.getProjectInfoId());
+        return projectResultMapper.update(projectResult, queryWrapper);
     }
 
     @Override

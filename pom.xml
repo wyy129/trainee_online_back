@@ -75,7 +75,7 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
-
+        <!--执行sql打印相关依赖-->
         <dependency>
             <groupId>p6spy</groupId>
             <artifactId>p6spy</artifactId>

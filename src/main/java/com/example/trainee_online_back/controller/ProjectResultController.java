@@ -33,6 +33,7 @@ public class ProjectResultController {
      * @date: 2022/6/15 10:09
      * @return: 增加的条数
      */
+    @RequestMapping("/addprojectresult")
     public JSONObject addProjectResult(@RequestBody ProjectResult projectResult) {
 
         Integer userId = projectResult.getUserId();
@@ -41,6 +42,10 @@ public class ProjectResultController {
             throw new ParameterException("参数有误");
         }
         VerifyUserUtil.verifyOperationUser(String.valueOf(userId));
+        ProjectResultVo result = projectResultService.getProjectResult(projectResult.getUserId().toString());
+        if (result != null){
+            throw new ParameterException("已经存在毕设信息，不允许新增");
+        }
         int i = projectResultService.addProjectResult(projectResult);
         return ResponseUtil.returnSuccess("成功添加i条数据", i);
     }
@@ -51,6 +56,7 @@ public class ProjectResultController {
      * @date: 2022/6/15 10:09
      * @return: 更新的条数
      */
+    @RequestMapping("/updateprojectresult")
     public JSONObject updateProjectResult(@RequestBody ProjectResult projectResult) {
 
         Integer userId = projectResult.getUserId();
@@ -58,7 +64,7 @@ public class ProjectResultController {
         if (StringUtils.isEmpty(String.valueOf(userId)) || StringUtils.isEmpty(String.valueOf(projectInfoId))) {
             throw new ParameterException("参数有误");
         }
-        // 有坑，即登录用户可以随意伪造数据进行数据更新，------待解决
+        // 有坑，即登录用户可以随意伪造数据进行数据更新，比如登录用户，可以修改成绩！！！------待解决
 
         int i = projectResultService.updateProjectResult(projectResult);
         return ResponseUtil.returnSuccess("成功更新i条数据", i);
@@ -70,6 +76,7 @@ public class ProjectResultController {
      * @date: 2022/6/15 10:53
      * @return: 毕设结果信息VO
      */
+    @RequestMapping("/getprojectresultbyuserid")
     public JSONObject getProjectResultByUserId(@RequestBody Map map) {
         String userId = map.get("userId").toString();
         if (StringUtils.isEmpty(userId)) {
@@ -77,8 +84,8 @@ public class ProjectResultController {
         }
         // 有坑，即登录用户可以随意伪造数据进行数据更新，------待解决
 
-        ProjectResultVo resultVo =  projectResultService.getProjectResult(userId);
-        return ResponseUtil.returnSuccess("成功更新i条数据", resultVo);
+        ProjectResultVo resultVo = projectResultService.getProjectResult(userId);
+        return ResponseUtil.returnSuccess("成功获取i条数据", resultVo);
     }
 
 
