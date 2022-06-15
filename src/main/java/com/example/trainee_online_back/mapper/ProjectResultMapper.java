@@ -2,6 +2,7 @@ package com.example.trainee_online_back.mapper;
 
 import com.example.trainee_online_back.entity.ProjectResult;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.trainee_online_back.entity.Vo.ProjectResultVo;
 
 /**
 * @author wangyangyang
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface ProjectResultMapper extends BaseMapper<ProjectResult> {
 
+    ProjectResultVo getProjectResult(String userId);
 }
 
 
