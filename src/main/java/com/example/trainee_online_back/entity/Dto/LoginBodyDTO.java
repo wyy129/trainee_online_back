@@ -27,4 +27,12 @@ public class LoginBodyDTO {
      * @date: 2022/6/8 11:48
      */
     private String uuid;
+
+    /**
+     * @description: 请求地址
+     * @author wangyangyang
+     * @date: 2022/6/15 16:11
+     * @return:
+     */
+    private String address;
 }
