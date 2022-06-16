@@ -8,6 +8,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
+/**
+ * @author wangyangyang
+ * @description: 在线用户监控服务实现类
+ * @date: 2022/6/16 8:19
+ * @return:
+ */
 @Service
 public class OnlineUserServiceImpl implements OnlineUserService {
     @Autowired
@@ -20,5 +26,16 @@ public class OnlineUserServiceImpl implements OnlineUserService {
 //                collect(Collectors.toList());
         System.out.println(keys);
         return keys;
+    }
+
+    /**
+     * @description: 根据id强行退出某用户
+     * @author wangyangyang
+     * @date: 2022/6/16 8:17
+     * @return: 是否成功
+     */
+    @Override
+    public boolean loginOutOnlineUser(String userId) {
+        return redisCache.deleteObject("user_" + userId + "token");
     }
 }
