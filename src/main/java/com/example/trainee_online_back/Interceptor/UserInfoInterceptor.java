@@ -33,14 +33,10 @@ public class UserInfoInterceptor implements HandlerInterceptor {
     private RedisCache redisCache;
 
     /**
-     * @description: 在请求处理之前进行调用（Controller方法调用之前）
-     * @param:
+     * @description: 请求拦截器
+     * @author wangyangyang
+     * @date: 2022/6/16 8:58
      * @return:
-     * @exception:
-     * @author: shiliqiang
-     * @company: CTY Technology Co.,Ltd
-     * @since: 2021/8/24 13:50
-     * @version: V1.0
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
