@@ -147,6 +147,7 @@ public class TestController {
      */
     @RequestMapping("/test8")
     public JSONObject test8() {
+        logger.info("这是测试log");
         List<InternshipWork> internshipWorks = internshipWorkMapper.selectList(null);
         System.out.println(internshipWorks);
         return ResponseUtil.returnSuccess("", internshipWorks);
@@ -161,6 +162,22 @@ public class TestController {
     @RequestMapping("/test9")
     public JSONObject test9(@RequestBody Map map, HttpServletRequest httpServletRequest) {
         System.out.println(httpServletRequest);
-        return ResponseUtil.returnSuccess("test9",httpServletRequest);
+        return ResponseUtil.returnSuccess("test9", httpServletRequest);
+    }
+
+    /**
+     * @description: ThreadLocal内存泄漏测试
+     * @author wangyangyang
+     * @date: 2022/6/17 10:44
+     * @return:
+     */
+    @RequestMapping("/test10")
+    public void test10() {
+        for (int i = 0; i < 100; i++) {
+            ThreadLocal<String> stringThreadLocal = new ThreadLocal<>();
+            String rsult = String.valueOf(i);
+            stringThreadLocal.set(rsult);
+            System.out.println(stringThreadLocal);
+        }
     }
 }
