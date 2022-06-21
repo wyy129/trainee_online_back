@@ -18,8 +18,8 @@ import java.util.concurrent.TimeUnit;
 
 
 /**
- * @description: 对管理员功能模块信息请求拦截
  * @author wangyangyang
+ * @description: 对管理员功能模块信息请求拦截
  * @date: 2022/6/21 17:25
  * @return:
  */
@@ -30,39 +30,30 @@ public class AdminInterceptor implements HandlerInterceptor {
     @Autowired
     private RedisCache redisCache;
 
-    /**
-     * @description: 请求拦截器
-     * @author wangyangyang
-     * @date: 2022/6/16 8:58
-     * @return:
-     */
+   /**
+    * @desc: 管理员接口请求拦截器
+    * @author: wyy
+    * @date: 2022-06-21 20:54:52
+    * @return:  是否放行
+    **/
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String userid = request.getHeader("userid");
-        String role = request.getHeader("role");
-        String token = request.getHeader("token");
+        String adminId = request.getHeader("adminId");
+        String faceCode = request.getHeader("faceCode");
 
-        if (StringUtils.isEmpty(userid) || StringUtils.isEmpty(token) || StringUtils.isEmpty(role)) {
-            throw new BasicInfoException("userid或token或role不能为空");
+        if (StringUtils.isEmpty(adminId) || StringUtils.isEmpty(faceCode)) {
+            throw new BasicInfoException("adminId或faceCode不能为空");
         }
-        RequestUtil.userId.set(Long.valueOf(userid));
-        RequestUtil.userRole.set(Long.valueOf(role));
+        RequestUtil.adminId.set(Long.valueOf(adminId));
         // 方便测试
         // ------------------
-        if ("test".equals(token)) {
-            logger.info("测试入参用户id：" + userid);
+        if ("test".equals(faceCode)) {
+            logger.info("测试入参管理员id：" + adminId);
             return true;
         }
         // ----------------------------
-        TokenUtil.verifyToken(token, userid);
-        Object cachetoken = redisCache.getCacheObject("user_" + userid + "token");
-        if (cachetoken != null) {
 
-            redisCache.expire("user_" + userid + "token", 20, TimeUnit.MINUTES);
-        } else {
-            throw new BasicInfoException("token失效");
-        }
-        logger.info("入参用户id：" + userid);
+        logger.info("入参管理员id：" + adminId);
 
         return true;
         //如果设置为false时，被请求时，拦截器执行到此处将不会继续操作,如果设置为true时，请求将会继续执行后面的操作
@@ -70,16 +61,12 @@ public class AdminInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
-//         System.out.println("执行了TestInterceptor的postHandle方法");
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-        if (RequestUtil.userId.get() != null) {
-            RequestUtil.userId.remove();
-        }
-        if (RequestUtil.userRole.get() != null) {
-            RequestUtil.userRole.remove();
+        if (RequestUtil.adminId.get() != null) {
+            RequestUtil.adminId.remove();
         }
         logger.info("-返回-");
     }

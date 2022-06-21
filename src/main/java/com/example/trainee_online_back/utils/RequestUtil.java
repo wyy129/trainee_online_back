@@ -23,10 +23,11 @@ public class RequestUtil {
     private static final String IV_STRING = "Cty-china-ER-app";
 
     /**
-     *本地userid
+     * 本地userid
      */
     public static final ThreadLocal<Long> userId = new ThreadLocal<>();
     public static final ThreadLocal<Long> userRole = new ThreadLocal<>();
+    public static final ThreadLocal<Long> adminId = new ThreadLocal<>();
 
     /**
      * @description: 获取userid
@@ -45,7 +46,7 @@ public class RequestUtil {
 
     /**
      * @description: userInfo.get()封装，避免重复判断返回结果null的情况
-      * @param: null
+     * @param: null
      * @return:
      * @exception:
      * @author: wunan
@@ -53,33 +54,39 @@ public class RequestUtil {
      * @since: 2021/9/17 14:09
      * @version: V1.0
      */
-    public static Long getTLUserId(){
-        Assert.notNull(userId.get(),"请登录系统");
+    public static Long getTLUserId() {
+        Assert.notNull(userId.get(), "请登录系统");
         return userId.get();
     }
 
-    public static Long getTLUserRole(){
-        Assert.notNull(userRole.get(),"请登录系统");
+    public static Long getTLUserRole() {
+        Assert.notNull(userRole.get(), "请登录系统");
         return userRole.get();
+    }
+
+    public static Long getAdminId() {
+        Assert.notNull(adminId.get(), "请登录系统");
+        return adminId.get();
     }
 
     /**
      * 加密ID
+     *
      * @param content
      * @return
      */
-    public static String decryptString(String content){
-        try{
+    public static String decryptString(String content) {
+        try {
             byte[] decryptFrom = parseHexStr2Byte(content);
             byte[] decryptResult = decrypt(decryptFrom, "L03-Cumminschine");
-            return new String(decryptResult,CHARSET);
+            return new String(decryptResult, CHARSET);
 
 //			Decoder decoder = Base64.getDecoder();
 //			byte[] decryptFrom = decoder.decode(content);
 //			byte[] decryptResult = decrypt(decryptFrom, "16BytesLengthKey");
 //			return new String(decryptResult,charset);
-        }catch(Exception ex){
-            log.error(ex.getMessage(),ex);
+        } catch (Exception ex) {
+            log.error(ex.getMessage(), ex);
         }
         return null;
     }
@@ -106,10 +113,8 @@ public class RequestUtil {
     /**
      * 解密
      *
-     * @param content
-     *            待解密内容
-     * @param password
-     *            解密密钥
+     * @param content  待解密内容
+     * @param password 解密密钥
      * @return
      */
     public static byte[] decrypt(byte[] content, String password) {
