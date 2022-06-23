@@ -59,6 +59,7 @@ public class ProjectInfoController {
      * @return: 删除的条数
      * role：教师
      */
+    @Role("3")
     @RequestMapping("/deleteprojectinfobyid")
     public JSONObject deleteProjectInfoById(@RequestBody Map map) {
         String projectInfoId = map.get("projectInfoId").toString();

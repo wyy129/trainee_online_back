@@ -2,6 +2,7 @@ package com.example.trainee_online_back.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.trainee_online_back.annotation.Role;
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
 import com.example.trainee_online_back.entity.Temperature;
 import com.example.trainee_online_back.exception.ParameterException;
@@ -55,6 +56,7 @@ public class TemperatureController {
      * @date: 2022/6/14 11:19
      * @return: 风险学生体温记录列表
      */
+    @Role("2")
     @RequestMapping("/getriskstudent")
     public JSONObject getRiskStudent(BaseQueryDto baseQueryDto) {
         JSONObject riskStudent = temperatureService.getRiskStudent(baseQueryDto);

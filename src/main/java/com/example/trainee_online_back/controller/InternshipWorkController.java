@@ -93,7 +93,7 @@ public class InternshipWorkController {
         if (i == 1) {
             return ResponseUtil.returnSuccess("成功更新1条数据", i);
         }
-        return ResponseUtil.returnFail("添加失败", i);
+        return ResponseUtil.returnFail("更新失败", i);
     }
 
     /**
