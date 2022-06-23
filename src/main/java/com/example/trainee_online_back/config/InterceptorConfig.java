@@ -1,6 +1,5 @@
 package com.example.trainee_online_back.config;
 
-import com.example.trainee_online_back.Interceptor.AdminInterceptor;
 import com.example.trainee_online_back.Interceptor.UserInfoInterceptor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -31,25 +30,15 @@ public class InterceptorConfig implements WebMvcConfigurer {
         return new UserInfoInterceptor();
     }
 
-    @Bean
-    public AdminInterceptor getAdminInterceptor() {
-        return new AdminInterceptor();
-    }
-
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        // 添加增加sf回调接口的拦截器
-        InterceptorRegistration adminInterceptor = registry.addInterceptor(getAdminInterceptor());
-        adminInterceptor.addPathPatterns("/admin");
-
-
         // 注册自己的拦截器
         InterceptorRegistration registration = registry.addInterceptor(getUserInfoInterceptor());
 //        String excludePathStr = "/common/queryWechatArticle,/serviceStationActivation/getSfUserInfo," +
 //                "/common/getCode,/common/isPhoneExisting,/serviceStationActivation/updateSfUserInfo,"
 //                + "/serviceStationActivation/verityUserInfo,/serviceStationActivation/setUserInfo,/sf/**,/userUpload";
-        String excludePathStr = "/login";
+        String excludePathStr = "/admin/**,/login,";
         // 所有路径都被拦截
         String[] excludePath = excludePathStr.split(",");
         registration.excludePathPatterns(excludePath);
