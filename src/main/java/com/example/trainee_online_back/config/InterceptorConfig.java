@@ -41,15 +41,15 @@ public class InterceptorConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         // 添加增加sf回调接口的拦截器
         InterceptorRegistration adminInterceptor = registry.addInterceptor(getAdminInterceptor());
-        adminInterceptor.addPathPatterns("/admin");
-
+        adminInterceptor.addPathPatterns("/admin/**");
+        adminInterceptor.excludePathPatterns("/admin/adminlogin");
 
         // 注册自己的拦截器
         InterceptorRegistration registration = registry.addInterceptor(getUserInfoInterceptor());
 //        String excludePathStr = "/common/queryWechatArticle,/serviceStationActivation/getSfUserInfo," +
 //                "/common/getCode,/common/isPhoneExisting,/serviceStationActivation/updateSfUserInfo,"
 //                + "/serviceStationActivation/verityUserInfo,/serviceStationActivation/setUserInfo,/sf/**,/userUpload";
-        String excludePathStr = "/login";
+        String excludePathStr = "/login,/admin/**";
         // 所有路径都被拦截
         String[] excludePath = excludePathStr.split(",");
         registration.excludePathPatterns(excludePath);

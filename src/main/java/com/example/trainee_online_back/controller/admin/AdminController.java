@@ -38,14 +38,18 @@ public class AdminController {
         }
         AdminUser adminUser = adminUserService.adminLogin(adminUsername, adminPassword);
         if (adminUser == null) {
-            return ResponseUtil.returnFail("登录失败，未找到用户",loginAdmin);
+            return ResponseUtil.returnFail("登录失败，未找到用户", loginAdmin);
         }
         // -------------------获取人脸信息逻辑，根据获取人脸信息后保存为AdminToken，根据这个访问业务
-
 
 
         //-----------------------------------------------------------------------------
 
         return null;
+    }
+
+    @RequestMapping("/test")
+    public void test() {
+        System.out.println("管理员测试");
     }
 }
