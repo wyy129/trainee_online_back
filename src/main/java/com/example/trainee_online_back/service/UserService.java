@@ -26,10 +26,13 @@ public interface UserService extends IService<User> {
      * @date: 2022/6/8 13:10
      */
     User getUserByUsername(String username);
+
     /**
      * @description: 分页获取所有学生信息
      * @author wangyangyang
      * @date: 2022/6/9 11:22
      */
     Page<User> getAllStudent(BaseQueryDto baseQueryDto);
+
+    boolean logOut();
 }

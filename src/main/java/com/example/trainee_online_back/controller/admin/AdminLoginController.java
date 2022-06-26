@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminLoginController {
     @Autowired
     private AdminUserService adminUserService;
 
@@ -48,8 +48,14 @@ public class AdminController {
         return null;
     }
 
-    @RequestMapping("/test")
-    public void test() {
-        System.out.println("管理员测试");
+    /**
+     * @desc: 管理员登出
+     * @author: wyy
+     * @date: 2022-06-26 17:31:04
+     * @return:
+     **/
+    @RequestMapping("/adminlogout")
+    public void adminLogOut() {
+
     }
 }

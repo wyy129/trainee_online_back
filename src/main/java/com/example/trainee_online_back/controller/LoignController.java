@@ -75,4 +75,19 @@ public class LoignController {
         }
 
     }
+
+    /**
+     * @desc: 用户登出功能
+     * @author: wyy
+     * @date: 2022-06-26 17:57:07
+     * @return: 是否登出成功
+     **/
+    @RequestMapping("/logout")
+    public JSONObject logOut() {
+        boolean b = userService.logOut();
+        if (b) {
+            return ResponseUtil.returnSuccess("登出成功", b);
+        }
+        return ResponseUtil.returnFail("登出失败", b);
+    }
 }

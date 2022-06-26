@@ -2,6 +2,7 @@ package com.example.trainee_online_back.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Assert;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
@@ -9,6 +10,7 @@ import com.example.trainee_online_back.entity.User;
 import com.example.trainee_online_back.service.UserService;
 import com.example.trainee_online_back.mapper.UserMapper;
 import com.example.trainee_online_back.utils.RedisCache;
+import com.example.trainee_online_back.utils.RequestUtil;
 import com.example.trainee_online_back.utils.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,9 +47,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         }
         String userid = user.getId().toString();
         String token = TokenUtil.createToken(userid);
+//        将token缓存到redis当中
         redisCache.setCacheObject("user_" + userid + "token", token, 20, TimeUnit.MINUTES);
         return token;
     }
+
     /**
      * @description: 根据用户id获取用户信息
      * @author wangyangyang
@@ -60,6 +64,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         return userMapper.selectOne(userQueryWrapper);
 
     }
+
     /**
      * @description: 分页获取所有学生信息
      * @author wangyangyang
@@ -72,6 +77,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         userQueryWrapper.eq("role", 1);
         IPage<User> userIPage = userMapper.selectPage(userPage, userQueryWrapper);
         return userPage;
+    }
+
+    /**
+     * @desc: 用户登出逻辑
+     * @author: wyy
+     * @date: 2022-06-26 18:08:45
+     * @return: 是否登出成功
+     **/
+    @Override
+    public boolean logOut() {
+        Long userId = RequestUtil.getTLUserId();
+        // 重置当前的token ，不用重置，因为在拦截器中 redis中token失效就不能访问业务了
+        // TokenUtil.createToken(String.valueOf(userId));
+        // 删除缓存中的token
+        return redisCache.deleteObject("user_" + userId + "token");
     }
 
 }

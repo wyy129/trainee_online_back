@@ -39,7 +39,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        // 添加增加sf回调接口的拦截器
+        // 添加管理员拦截器
         InterceptorRegistration adminInterceptor = registry.addInterceptor(getAdminInterceptor());
         adminInterceptor.addPathPatterns("/admin/**");
         adminInterceptor.excludePathPatterns("/admin/adminlogin");
