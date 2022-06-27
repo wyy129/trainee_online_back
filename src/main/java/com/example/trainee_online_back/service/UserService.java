@@ -34,5 +34,27 @@ public interface UserService extends IService<User> {
      */
     Page<User> getAllStudent(BaseQueryDto baseQueryDto);
 
+    /**
+     * @desc: 用户登出
+     * @author: wyy
+     * @date: 2022-06-27 21:18:29
+     * @return: 是否成功
+     **/
     boolean logOut();
+
+    /**
+     * @desc: 添加用户
+     * @author: wyy
+     * @date: 2022-06-27 21:17:23
+     * @return: 添加条数
+     **/
+    int addUser(User user);
+
+    /**
+     * @desc: 删除用户
+     * @author: wyy
+     * @date: 2022-06-27 21:55:26
+     * @return: 删除的数量
+     **/
+    int deleteUserById();
 }

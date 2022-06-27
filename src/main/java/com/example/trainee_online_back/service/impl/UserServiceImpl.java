@@ -24,8 +24,7 @@ import java.util.concurrent.TimeUnit;
  * @createDate 2022-06-08 10:43:31
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User>
-        implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
     @Autowired
     private UserMapper userMapper;
     @Autowired
@@ -88,10 +87,28 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Override
     public boolean logOut() {
         Long userId = RequestUtil.getTLUserId();
-        // 重置当前的token ，不用重置，因为在拦截器中 redis中token失效就不能访问业务了
+        // 重置当前的token 。不用重置，因为在拦截器中 redis中token失效就不能访问业务了
         // TokenUtil.createToken(String.valueOf(userId));
         // 删除缓存中的token
         return redisCache.deleteObject("user_" + userId + "token");
+    }
+
+    /**
+     * @desc: 添加用户
+     * @author: wyy
+     * @date: 2022-06-27 21:38:56
+     * @return: 添加条数
+     **/
+    @Override
+    public int addUser(User user) {
+        User user1 = getUserByUsername(user.getUsername());
+        Assert.notNull(user1, "用户信息已存在");
+        return userMapper.insert(user);
+    }
+
+    @Override
+    public int deleteUserById() {
+        return 0;
     }
 
 }
