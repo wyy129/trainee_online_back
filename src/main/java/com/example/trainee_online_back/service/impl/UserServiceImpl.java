@@ -2,7 +2,6 @@ package com.example.trainee_online_back.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.Assert;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
@@ -113,6 +112,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public int deleteUserById(Long userId) {
         return userMapper.deleteById(userId);
+    }
+
+    /**
+     * @desc: 更新用户
+     * @author: wyy
+     * @date: 2022-06-28 21:19:45
+     * @return: 更改的条数
+     **/
+    public int updateUser(User user) {
+        return userMapper.updateById(user);
     }
 
 }

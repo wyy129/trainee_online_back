@@ -57,4 +57,11 @@ public interface UserService extends IService<User> {
      * @return: 删除的数量
      **/
     int deleteUserById(Long userId);
+    /**
+     * @desc: 修改用户
+     * @author: wyy
+     * @date: 2022-06-28 21:18:38
+     * @return: 更改的条数
+     **/
+    int updateUser(User user);
 }
