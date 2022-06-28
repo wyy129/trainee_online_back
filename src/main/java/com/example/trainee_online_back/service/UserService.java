@@ -51,10 +51,10 @@ public interface UserService extends IService<User> {
     int addUser(User user);
 
     /**
-     * @desc: 删除用户
+     * @desc: 根据用户id删除用户
      * @author: wyy
      * @date: 2022-06-27 21:55:26
      * @return: 删除的数量
      **/
-    int deleteUserById();
+    int deleteUserById(Long userId);
 }

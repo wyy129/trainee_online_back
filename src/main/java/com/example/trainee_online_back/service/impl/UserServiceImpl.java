@@ -87,7 +87,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public boolean logOut() {
         Long userId = RequestUtil.getTLUserId();
-        // 重置当前的token 。不用重置，因为在拦截器中 redis中token失效就不能访问业务了
+        // 重置当前的token。 不用重置，因为在拦截器中 redis中token失效就不能访问业务了
         // TokenUtil.createToken(String.valueOf(userId));
         // 删除缓存中的token
         return redisCache.deleteObject("user_" + userId + "token");
@@ -101,14 +101,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      **/
     @Override
     public int addUser(User user) {
-        User user1 = getUserByUsername(user.getUsername());
-        Assert.notNull(user1, "用户信息已存在");
         return userMapper.insert(user);
     }
 
+    /**
+     * @description: 根据用户id删除用户
+     * @author wangyangyang
+     * @date: 2022/6/28 10:20
+     * @return: 删除的数量
+     */
     @Override
-    public int deleteUserById() {
-        return 0;
+    public int deleteUserById(Long userId) {
+        return userMapper.deleteById(userId);
     }
 
 }
