@@ -1,4 +1,4 @@
-package com.example.trainee_online_back.config;
+package com.example.trainee_online_back.Aspect;
 
 import com.alibaba.fastjson.JSON;
 import com.example.trainee_online_back.utils.HttpContextUtils;
