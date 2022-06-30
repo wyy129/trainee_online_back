@@ -48,6 +48,8 @@ public class TestController {
     @Autowired
     private InternshipWorkMapper internshipWorkMapper;
 
+    private static int number = 0;
+
     /**
      * @desc: 测试redis的使用
      * @author: wyy
@@ -179,5 +181,17 @@ public class TestController {
             stringThreadLocal.set(rsult);
             System.out.println(stringThreadLocal);
         }
+    }
+
+    /**
+     * @desc: 研究并发
+     * @author: wyy
+     * @date: 2022-06-30 21:33:19
+     * @return:
+     **/
+    @RequestMapping("/test11")
+    public void test11() {
+        int i = number++;
+        System.out.println(i+"_________________");
     }
 }
