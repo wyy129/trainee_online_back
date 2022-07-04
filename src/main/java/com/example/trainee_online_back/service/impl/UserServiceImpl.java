@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.trainee_online_back.constant.TokenConstants;
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
 import com.example.trainee_online_back.entity.User;
 import com.example.trainee_online_back.service.UserService;
@@ -46,7 +47,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String userid = user.getId().toString();
         String token = TokenUtil.createToken(userid);
 //        将token缓存到redis当中
-        redisCache.setCacheObject("user_" + userid + "token", token, 20, TimeUnit.MINUTES);
+        redisCache.setCacheObject(TokenConstants.USER + userid + TokenConstants.TOKEN, token, 20, TimeUnit.MINUTES);
         return token;
     }
 

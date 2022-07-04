@@ -3,6 +3,7 @@ package com.example.trainee_online_back.Interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.trainee_online_back.constant.TokenConstants;
 import com.example.trainee_online_back.exception.BasicInfoException;
 import com.example.trainee_online_back.utils.RedisCache;
 import com.example.trainee_online_back.utils.RequestUtil;
@@ -60,7 +61,7 @@ public class UserInfoInterceptor implements HandlerInterceptor {
         Object cachetoken = redisCache.getCacheObject("user_" + userid + "token");
         if (cachetoken != null) {
 
-            redisCache.expire("user_" + userid + "token", 20, TimeUnit.MINUTES);
+            redisCache.expire(TokenConstants.USER + userid + TokenConstants.TOKEN, 20, TimeUnit.MINUTES);
         } else {
             throw new BasicInfoException("token失效");
         }
