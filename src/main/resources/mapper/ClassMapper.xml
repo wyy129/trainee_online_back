@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.trainee_online_back.mapper.ClassMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.trainee_online_back.entity.Class">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="createdBy" column="CREATED_BY" jdbcType="VARCHAR"/>
+            <result property="createdTime" column="CREATED_TIME" jdbcType="TIMESTAMP"/>
+            <result property="updatedBy" column="UPDATED_BY" jdbcType="VARCHAR"/>
+            <result property="updatedTime" column="UPDATED_TIME" jdbcType="TIMESTAMP"/>
+            <result property="className" column="class_name" jdbcType="VARCHAR"/>
+            <result property="classDec" column="class_dec" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,CREATED_BY,CREATED_TIME,
+        UPDATED_BY,UPDATED_TIME,class_name,
+        class_dec
+    </sql>
+</mapper>

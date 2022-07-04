@@ -6,14 +6,18 @@
 
     <resultMap id="BaseResultMap" type="com.example.trainee_online_back.entity.InternshipWork">
             <id property="workId" column="work_id" jdbcType="INTEGER"/>
+            <result property="createdBy" column="CREATED_BY" jdbcType="VARCHAR"/>
+            <result property="createdTime" column="CREATED_TIME" jdbcType="TIMESTAMP"/>
+            <result property="updatedBy" column="UPDATED_BY" jdbcType="VARCHAR"/>
+            <result property="updatedTime" column="UPDATED_TIME" jdbcType="TIMESTAMP"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
             <result property="workTitle" column="work_title" jdbcType="VARCHAR"/>
             <result property="workContent" column="work_content" jdbcType="VARCHAR"/>
-            <result property="workCreadtime" column="work_creadTime" jdbcType="TIMESTAMP"/>
-            <result property="studentId" column="student_id" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        work_id,work_title,work_content,
-        work_creadTime,student_id
+        work_id,CREATED_BY,CREATED_TIME,
+        UPDATED_BY,UPDATED_TIME,user_id,
+        work_title,work_content
     </sql>
 </mapper>

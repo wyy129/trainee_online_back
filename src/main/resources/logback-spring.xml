@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <!-- 日志存放的路径  -->
+    <property name="LOG_HOME" value="logs"/>
+
+    <property name="LOG_PATTERN"
+              value = "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%X{X-B3-TraceId:-}|%X{X-B3-SpanId:-}] %logger{36} - %msg%n"/>
+
+    <!-- 控制台输出日志 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 文件输出日志 -->
+    <appender name="EXT_PROFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter"/>
+        <rollingPolicy name="file"
+                       class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/waimou/waimou-%d{yyyyMMddHH}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="DEBUG-LOG" additivity="true">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="INFO-LOG" additivity="true">
+        <appender-ref ref="EXT_PROFILE"/>
+    </logger>
+    <logger name="WARN-LOG" additivity="true">
+        <appender-ref ref="EXT_PROFILE"/>
+    </logger>
+    <logger name="ERROR-LOG" additivity="true">
+        <appender-ref ref="EXT_PROFILE"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="EXT_PROFILE"/>
+    </root>
+
+</configuration>

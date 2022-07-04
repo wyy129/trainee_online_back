@@ -7,9 +7,9 @@ import com.example.trainee_online_back.mapper.MajorMapper;
 import org.springframework.stereotype.Service;
 
 /**
-* @author wyy
+* @author wangyangyang
 * @description 针对表【major(专业表)】的数据库操作Service实现
-* @createDate 2022-05-10 18:46:29
+* @createDate 2022-06-08 10:43:31
 */
 @Service
 public class MajorServiceImpl extends ServiceImpl<MajorMapper, Major>

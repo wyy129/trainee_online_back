@@ -1,0 +1,43 @@
+spring:
+  # redis 配置
+  redis:
+    # 地址
+    host: 101.43.217.252
+    # 端口，默认为6379
+    port: 6379
+    # 数据库索引
+    database: 0
+    # 密码
+    password: waimou
+    # 连接超时时间
+    timeout: 10s
+    lettuce:
+      pool:
+        # 连接池中的最小空闲连接
+        min-idle: 0
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池的最大数据库连接数
+        max-active: 8
+        # #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1ms
+  datasource:
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    username: root
+    password: Waimou..
+    url: jdbc:p6spy:mysql://101.43.217.252:3306/dev_tr?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+server:
+  port: 9000
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    global-config:
+      db-config:
+        logic-delete-field: deleted  # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+        logic-delete-value: 1 # 逻辑已删除值
+        logic-not-delete-value: 0 # 逻辑未删除值
+
+logging:
+  level:
+    com.baomidou.mybatisplus.samples: debug
+
