@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-//@MapperScan("com.example.trainee_online_back.mapper")
+@MapperScan("com.example.trainee_online_back.mapper")
 public class TraineeOnlineBackApplication {
 
     public static void main(String[] args) {
