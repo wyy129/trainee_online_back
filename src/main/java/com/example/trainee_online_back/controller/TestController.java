@@ -192,6 +192,17 @@ public class TestController {
     @RequestMapping("/test11")
     public void test11() {
         int i = number++;
-        System.out.println(i+"_________________");
+        System.out.println(i + "_________________");
+    }
+
+    /**
+     * @description: 测试easy excle
+     * @author wangyangyang
+     * @date: 2022/7/5 15:54
+     * @return: 未完成
+     */
+    @RequestMapping("/test12")
+    public void test12() {
+        System.out.println("未完成");
     }
 }
