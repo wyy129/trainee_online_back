@@ -15,9 +15,11 @@ import com.example.trainee_online_back.service.UserService;
 import com.example.trainee_online_back.utils.PageUtil;
 import com.example.trainee_online_back.utils.RedisCache;
 import com.example.trainee_online_back.utils.ResponseUtil;
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -196,7 +198,7 @@ public class TestController {
     }
 
     /**
-     * @description: 测试easy excle
+     * @description: 测试easy excle 未完成
      * @author wangyangyang
      * @date: 2022/7/5 15:54
      * @return: 未完成
@@ -204,5 +206,19 @@ public class TestController {
     @RequestMapping("/test12")
     public void test12() {
         System.out.println("未完成");
+    }
+
+    /**
+     * @desc: 用户根据角色获取路由
+     * @author: wyy
+     * @date: 2022-07-06 21:00:48
+     * @return: 路由信息
+     **/
+    @RequestMapping("/test13")
+    public JSONObject test13() {
+//        System.out.println(role);
+        Object cacheObject = redisCache.getCacheObject("router-1");
+        System.out.println(JSON.toJSONString(cacheObject));
+        return ResponseUtil.returnSuccess("路由信息是", cacheObject);
     }
 }

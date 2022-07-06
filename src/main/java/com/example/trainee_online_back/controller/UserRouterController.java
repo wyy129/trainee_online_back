@@ -19,7 +19,16 @@
 //public class UserRouterController {
 //    @Autowired
 //    private UserRouterService userRouterService;
+//    /**
+//     * @desc: 用户根据角色id获取路由
+//     * @author: wyy
+//     * @date: 2022-07-06 20:59:58
+//     * @return: 路由信息
+//     **/
+//    @RequestMapping("/getrouter")
+//    public JSONObject gerRouter(){
 //
+//    }
 //    /**
 //     * @description: 用户根据角色获取路由
 //     * @author wangyangyang
