@@ -12,6 +12,7 @@ import com.alibaba.fastjson2.JSONWriter;
  * 
  * @author ruoyi
  */
+@SuppressWarnings("all")
 public class FastJson2JsonRedisSerializer<T> implements RedisSerializer<T>
 {
     public static final Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
