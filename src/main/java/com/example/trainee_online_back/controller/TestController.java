@@ -1,5 +1,6 @@
 package com.example.trainee_online_back.controller;
 
+import com.alibaba.excel.EasyExcel;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -23,8 +24,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +41,7 @@ import java.util.Map;
  **/
 @RestController
 @RequestMapping("/test")
+@SuppressWarnings("all")
 public class TestController {
     private static Logger logger = LoggerFactory.getLogger(TestController.class);
     @Autowired
@@ -221,4 +228,22 @@ public class TestController {
         System.out.println(JSON.toJSONString(cacheObject));
         return ResponseUtil.returnSuccess("路由信息是", cacheObject);
     }
+
+    /**
+     * @desc: 测试easyexcle
+     * @author: wyy
+     * @date: 2022-07-08 21:37:08
+     * @return: 表excle
+     **/
+    @RequestMapping("/test14")
+    public void test14(HttpServletResponse response) throws IOException {
+        List<User> users = userService.list();
+        response.setContentType("application/vnd.ms-excel");
+        response.setCharacterEncoding("utf-8");
+        // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
+        String fileName = URLEncoder.encode("userInfo", "UTF-8").replaceAll("\\+", "%20");
+        response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
+        EasyExcel.write(response.getOutputStream(), User.class).sheet("模板").doWrite(users);
+    }
+
 }

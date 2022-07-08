@@ -1,5 +1,6 @@
 package com.example.trainee_online_back.entity;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
@@ -18,6 +19,7 @@ public class User implements Serializable {
     /**
      * id
      */
+    @ExcelProperty("用户id")
     @TableId(type = IdType.AUTO)
     private Integer id;
 

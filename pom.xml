@@ -116,6 +116,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
+        <!--        引入hutool全部包-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.4</version>
+        </dependency>
     </dependencies>
 
 
