@@ -18,6 +18,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @date: 2022-06-07 20:59:28
  **/
 @Configuration
+@SuppressWarnings("all")
 public class InterceptorConfig implements WebMvcConfigurer {
 
 
@@ -49,7 +50,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 //        String excludePathStr = "/common/queryWechatArticle,/serviceStationActivation/getSfUserInfo," +
 //                "/common/getCode,/common/isPhoneExisting,/serviceStationActivation/updateSfUserInfo,"
 //                + "/serviceStationActivation/verityUserInfo,/serviceStationActivation/setUserInfo,/sf/**,/userUpload";
-        String excludePathStr = "/login,/admin/**,/test/**";
+        String excludePathStr = "/login,/admin/**,/test/**,/userrouter/**";
         // 所有路径都被拦截
         String[] excludePath = excludePathStr.split(",");
         registration.excludePathPatterns(excludePath);
