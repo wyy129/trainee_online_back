@@ -1,8 +1,8 @@
 package com.example.trainee_online_back.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
-import com.example.trainee_online_back.entity.Dto.LoginBodyDTO;
 import com.example.trainee_online_back.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -18,7 +18,7 @@ public interface UserService extends IService<User> {
      * @author wangyangyang
      * @date: 2022/6/8 13:09
      */
-    String login(String username, String password, String uuid);
+    JSONObject login(String username, String password, String uuid);
 
     /**
      * @description: 根据用户id获取用户信息

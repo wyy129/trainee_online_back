@@ -56,18 +56,11 @@ public class LoignController {
         }
         sysLoginInfo.setLoginDate(DateUtils.getNowDate());
 //        Assert.notEmpty(uuid,"uuid不能为空");
-        String token = userService.login(username, password, uuid);
-        if (StringUtils.isNotEmpty(token)) {
-            User user = userService.getUserByUsername(username);
-            JSONObject jsonuser = (JSONObject) JSONObject.toJSON(user);
-            JSONObject obj = new JSONObject();
-            obj.put("status", 0);
-            obj.put("msg", "获取token成功");
-            obj.put("token", token);
-            obj.put("user", jsonuser);
+        JSONObject token = userService.login(username, password, uuid);
+        if (token != null) {
             sysLoginInfo.setSuccess("0");
             sysLoginInfoService.addSysLoginInfo(sysLoginInfo);
-            return obj;
+            return token;
         } else {
             sysLoginInfo.setSuccess("1");
             sysLoginInfoService.addSysLoginInfo(sysLoginInfo);
