@@ -37,12 +37,11 @@ public class TemperatureController {
     @RequestMapping("/addtemperature")
     public JSONObject addTemperature(@RequestBody Temperature temperature) {
         Integer userId = temperature.getUserId();
-        String isRisk = temperature.getIsRisk();
         String temperatureValue = temperature.getTemperatureValue();
         String temperatureAddress = temperature.getTemperatureAddress();
         String temperatureSymptom = temperature.getTemperatureSymptom();
         VerifyUserUtil.verifyOperationUser(String.valueOf(userId));
-        if (StringUtils.isEmpty(isRisk) || StringUtils.isEmpty(temperatureValue) || StringUtils.isEmpty(temperatureAddress) || StringUtils.isEmpty(temperatureSymptom)) {
+        if (StringUtils.isEmpty(temperatureValue) || StringUtils.isEmpty(temperatureAddress) || StringUtils.isEmpty(temperatureSymptom)) {
             throw new ParameterException("参数不能为空");
         }
         int i = temperatureService.addTemperature(temperature);

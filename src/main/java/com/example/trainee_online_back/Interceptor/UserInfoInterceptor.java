@@ -58,7 +58,7 @@ public class UserInfoInterceptor implements HandlerInterceptor {
         }
         // ----------------------------
         TokenUtil.verifyToken(token, userid);
-        Object cachetoken = redisCache.getCacheObject("user_" + userid + "token");
+        Object cachetoken = redisCache.getCacheObject(TokenConstants.USER + userid + TokenConstants.TOKEN);
         if (cachetoken != null) {
 
             redisCache.expire(TokenConstants.USER + userid + TokenConstants.TOKEN, 20, TimeUnit.MINUTES);

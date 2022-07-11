@@ -21,6 +21,7 @@ import java.util.Optional;
  * @createDate 2022-06-08 10:43:31
  */
 @Service
+@SuppressWarnings("all")
 public class TemperatureServiceImpl extends ServiceImpl<TemperatureMapper, Temperature>
         implements TemperatureService {
     @Autowired
@@ -40,6 +41,8 @@ public class TemperatureServiceImpl extends ServiceImpl<TemperatureMapper, Tempe
 
     @Override
     public int addTemperature(Temperature temperature) {
+        String temperatureValue = temperature.getTemperatureValue();
+        String temperatureSymptom = temperature.getTemperatureSymptom();
         return temperatureMapper.insert(temperature);
     }
 
