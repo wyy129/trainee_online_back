@@ -1,7 +1,6 @@
 package com.example.trainee_online_back.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.trainee_online_back.annotation.Role;
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
 import com.example.trainee_online_back.entity.Temperature;
@@ -51,7 +50,7 @@ public class TemperatureController {
     }
 
     /**
-     * @description: 分页获取风险学生记录（未完成，应该是导员查询自己本班级所有风险学生）
+     * @desc: 分页获取风险学生记录（未完成，应该是导员查询自己本班级所有风险学生）
      * @author wangyangyang
      * @date: 2022/6/14 11:19
      * @return: 风险学生体温记录列表
