@@ -1,10 +1,13 @@
 package com.example.trainee_online_back.entity;
 
+import com.alibaba.fastjson.annotation.JSONType;
+import com.alibaba.fastjson2.annotation.JSONBuilder;
 import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
