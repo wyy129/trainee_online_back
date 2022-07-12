@@ -10,6 +10,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -50,7 +51,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 //        String excludePathStr = "/common/queryWechatArticle,/serviceStationActivation/getSfUserInfo," +
 //                "/common/getCode,/common/isPhoneExisting,/serviceStationActivation/updateSfUserInfo,"
 //                + "/serviceStationActivation/verityUserInfo,/serviceStationActivation/setUserInfo,/sf/**,/userUpload";
-        String excludePathStr = "/login,/admin/**,/test/**,/userrouter/**";
+        String excludePathStr = "/login,/admin/**,/test/**,/userrouter/**,/swagger**/**,/webjars/**,/v3/**,/doc.html";
         // 所有路径都被拦截
         String[] excludePath = excludePathStr.split(",");
         registration.excludePathPatterns(excludePath);
