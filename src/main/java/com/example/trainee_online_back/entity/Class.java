@@ -1,18 +1,19 @@
 package com.example.trainee_online_back.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
  * 班级表
+ *
  * @TableName class
  */
-@TableName(value ="class")
+@TableName(value = "class")
 @Data
 public class Class implements Serializable {
     /**
@@ -24,21 +25,27 @@ public class Class implements Serializable {
     /**
      * 创建人
      */
+    @TableField(fill = FieldFill.INSERT)
     private String createdBy;
 
     /**
      * 创建时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(fill = FieldFill.INSERT)
     private Date createdTime;
 
     /**
      * 更新人
      */
+    @TableField(fill = FieldFill.UPDATE)
     private String updatedBy;
 
     /**
      * 更新时间
      */
+    @TableField(fill = FieldFill.UPDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updatedTime;
 
     /**
@@ -67,12 +74,12 @@ public class Class implements Serializable {
         }
         Class other = (Class) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getCreatedBy() == null ? other.getCreatedBy() == null : this.getCreatedBy().equals(other.getCreatedBy()))
-            && (this.getCreatedTime() == null ? other.getCreatedTime() == null : this.getCreatedTime().equals(other.getCreatedTime()))
-            && (this.getUpdatedBy() == null ? other.getUpdatedBy() == null : this.getUpdatedBy().equals(other.getUpdatedBy()))
-            && (this.getUpdatedTime() == null ? other.getUpdatedTime() == null : this.getUpdatedTime().equals(other.getUpdatedTime()))
-            && (this.getClassName() == null ? other.getClassName() == null : this.getClassName().equals(other.getClassName()))
-            && (this.getClassDec() == null ? other.getClassDec() == null : this.getClassDec().equals(other.getClassDec()));
+                && (this.getCreatedBy() == null ? other.getCreatedBy() == null : this.getCreatedBy().equals(other.getCreatedBy()))
+                && (this.getCreatedTime() == null ? other.getCreatedTime() == null : this.getCreatedTime().equals(other.getCreatedTime()))
+                && (this.getUpdatedBy() == null ? other.getUpdatedBy() == null : this.getUpdatedBy().equals(other.getUpdatedBy()))
+                && (this.getUpdatedTime() == null ? other.getUpdatedTime() == null : this.getUpdatedTime().equals(other.getUpdatedTime()))
+                && (this.getClassName() == null ? other.getClassName() == null : this.getClassName().equals(other.getClassName()))
+                && (this.getClassDec() == null ? other.getClassDec() == null : this.getClassDec().equals(other.getClassDec()));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.trainee_online_back.entity.Vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -20,6 +21,7 @@ public class UserInfoVo {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createdTime;
     /**
      * 更新人

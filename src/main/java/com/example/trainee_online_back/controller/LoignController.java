@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.Assert;
 import com.example.trainee_online_back.entity.Dto.LoginBodyDTO;
 import com.example.trainee_online_back.entity.SysLoginInfo;
-import com.example.trainee_online_back.entity.User;
 import com.example.trainee_online_back.service.SysLoginInfoService;
 import com.example.trainee_online_back.service.UserService;
 import com.example.trainee_online_back.utils.DateUtils;
@@ -13,7 +12,9 @@ import com.example.trainee_online_back.utils.StringUtils;
 import com.example.trainee_online_back.utils.ip.AddressUtils;
 import com.example.trainee_online_back.utils.ip.IpUtils;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,7 +39,8 @@ public class LoignController {
      * @author wangyangyang
      * @date: 2022/6/8 12:53
      */
-    @RequestMapping("/login")
+    @PostMapping("/login")
+    @ApiOperation("登录接口")
     public JSONObject login(@RequestBody LoginBodyDTO loginBodyDTO, HttpServletRequest httpServletRequest) {
         String username = loginBodyDTO.getUsername();
         String password = loginBodyDTO.getPassword();
