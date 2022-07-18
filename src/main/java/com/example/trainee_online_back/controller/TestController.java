@@ -7,7 +7,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
 import com.example.trainee_online_back.entity.Dto.GetProjectDTO;
 import com.example.trainee_online_back.entity.InternshipWork;
+import com.example.trainee_online_back.entity.SysOperLog;
 import com.example.trainee_online_back.entity.User;
+import com.example.trainee_online_back.manager.AsyncManager;
+import com.example.trainee_online_back.manager.factory.AsyncFactory;
 import com.example.trainee_online_back.mapper.InternshipWorkMapper;
 import com.example.trainee_online_back.mapper.UserMapper;
 import com.example.trainee_online_back.service.ProjectInfoService;
@@ -245,5 +248,19 @@ public class TestController {
         response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
         EasyExcel.write(response.getOutputStream(), User.class).sheet("模板").doWrite(users);
     }
+
+    /**
+     * @desc: 测试异步任务
+     * @author: wangyangyang
+     * @date: 2022-07-18 13:51:21
+     * @return:
+     **/
+    @RequestMapping("/test15")
+    public void test15() {
+        SysOperLog sysOperLog = new SysOperLog();
+        sysOperLog.setOperIp("127.0.0.1");
+        AsyncManager.me().execute(AsyncFactory.test());
+    }
+
 
 }

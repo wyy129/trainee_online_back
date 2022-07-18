@@ -2,6 +2,7 @@ package com.example.trainee_online_back.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.Assert;
+import com.example.trainee_online_back.annotation.Log;
 import com.example.trainee_online_back.entity.Vo.UserInfoVo;
 import com.example.trainee_online_back.service.UserInfoService;
 import com.example.trainee_online_back.utils.ResponseUtil;
@@ -32,10 +33,11 @@ public class UserInfoController {
      * @return: 用户基础信息
      */
     @RequestMapping("/getuserinfo")
+    @Log(title = "获取用户基础信息")
     public JSONObject getUserInfo(@RequestBody Map map) {
         String userid = map.get("userid").toString();
         VerifyUserUtil.verifyOperationUser(userid);
-        UserInfoVo userInfo = userInfoService.getUserInfo(userid);;
+        UserInfoVo userInfo = userInfoService.getUserInfo(userid);
         return ResponseUtil.returnSuccess("用户基础信息", userInfo);
 
     }
