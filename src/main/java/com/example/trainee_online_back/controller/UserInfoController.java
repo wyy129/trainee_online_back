@@ -34,10 +34,9 @@ public class UserInfoController {
      */
     @RequestMapping("/getuserinfo")
     @Log(title = "获取用户基础信息")
-    public JSONObject getUserInfo(@RequestBody Map map) {
-        String userid = map.get("userid").toString();
-        VerifyUserUtil.verifyOperationUser(userid);
-        UserInfoVo userInfo = userInfoService.getUserInfo(userid);
+    public JSONObject getUserInfo(String userId) {
+        VerifyUserUtil.verifyOperationUser(userId);
+        UserInfoVo userInfo = userInfoService.getUserInfo(userId);
         return ResponseUtil.returnSuccess("用户基础信息", userInfo);
 
     }
