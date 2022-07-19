@@ -45,6 +45,7 @@ public class ProjectInfo implements Serializable {
     /**
      * 创建人
      */
+    @TableField(fill = FieldFill.INSERT)
     private String createdBy;
 
     /**

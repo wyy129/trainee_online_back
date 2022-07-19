@@ -74,7 +74,7 @@ public class ProjectInfoServiceImpl extends ServiceImpl<ProjectInfoMapper, Proje
         Integer majorId = getProjectDTO.getMajorId();
         Integer userId = getProjectDTO.getUserId();
         queryWrapper.eq((majorId != null), "major_id", majorId);
-        queryWrapper.eq((userId != null), "major_id", majorId);
+        queryWrapper.eq((userId != null), "user_id", userId);
         Page page = new Page(Optional.ofNullable(getProjectDTO.getPage()).orElse(1L), Optional.ofNullable(getProjectDTO.getPageSize()).orElse(20L));
         return PageUtil.getPageData(projectInfoMapper.selectPage(page, queryWrapper));
     }
