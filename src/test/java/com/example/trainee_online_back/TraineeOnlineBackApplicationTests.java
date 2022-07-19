@@ -10,4 +10,9 @@ class TraineeOnlineBackApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    void test() {
+        System.out.println("hello world");
+    }
+
 }
