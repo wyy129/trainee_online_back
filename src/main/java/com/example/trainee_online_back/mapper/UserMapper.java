@@ -1,5 +1,9 @@
 package com.example.trainee_online_back.mapper;
 
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 import com.example.trainee_online_back.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.trainee_online_back.entity.Vo.UserInfoVo;
@@ -13,6 +17,16 @@ import com.example.trainee_online_back.entity.Vo.UserInfoVo;
 public interface UserMapper extends BaseMapper<User> {
 
     UserInfoVo getUserInfo(String userid);
+
+    /**
+     * @desc: 根据班级id获取学生列表
+     * @author: wangyangyang
+     * @date: 2022-07-20 15:38:41
+     * @return: 学生列表
+     **/
+    List<User> selectAllByClassId(@Param("classId") String classId);
+
+
 }
 
 
