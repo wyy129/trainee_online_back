@@ -40,6 +40,7 @@ public class TestService {
 
     @Autowired
     JavaMailSender javaMailSender;
+
     /**
      * @desc: 测试发送邮件功能
      * @author: wyy
