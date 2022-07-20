@@ -6,7 +6,6 @@ import com.example.trainee_online_back.entity.Dto.GetProjectDTO;
 import com.example.trainee_online_back.entity.ProjectInfo;
 import com.example.trainee_online_back.exception.ParameterException;
 import com.example.trainee_online_back.service.ProjectInfoService;
-import com.example.trainee_online_back.utils.RequestUtil;
 import com.example.trainee_online_back.utils.ResponseUtil;
 import com.example.trainee_online_back.utils.StringUtils;
 import com.example.trainee_online_back.utils.VerifyUserUtil;
@@ -63,13 +62,13 @@ public class ProjectInfoController {
     @RequestMapping("/deleteprojectinfobyid")
     public JSONObject deleteProjectInfoById(@RequestBody Map map) {
         String projectInfoId = map.get("projectInfoId").toString();
-        String userid = map.get("userid").toString();
-        if (StringUtils.isEmpty(projectInfoId) || StringUtils.isEmpty(userid)) {
+        String userId = map.get("userId").toString();
+        if (StringUtils.isEmpty(projectInfoId) || StringUtils.isEmpty(userId)) {
             throw new ParameterException("参数不能为空");
         }
-        VerifyUserUtil.verifyOperationUser(userid);
+        VerifyUserUtil.verifyOperationUser(userId);
         int i = projectInfoService.deleteProjectInfoById(Integer.valueOf(projectInfoId));
-        return ResponseUtil.returnSuccess("删除i条", i);
+        return ResponseUtil.returnSuccess("删除成功", i);
     }
 
     /**
@@ -89,7 +88,7 @@ public class ProjectInfoController {
         }
         VerifyUserUtil.verifyOperationUser(userId);
         int i = projectInfoService.updateProjectInfo(projectInfo);
-        return ResponseUtil.returnSuccess("更新成功i条", i);
+        return ResponseUtil.returnSuccess("更新成功", i);
     }
 
     /**
