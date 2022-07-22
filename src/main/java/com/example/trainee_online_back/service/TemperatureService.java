@@ -4,6 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
 import com.example.trainee_online_back.entity.Temperature;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.trainee_online_back.entity.Vo.RiskStudent;
+
+import java.util.List;
 
 /**
 * @author wangyangyang
@@ -33,4 +36,6 @@ public interface TemperatureService extends IService<Temperature> {
      * @return: 返回删除的条数
      */
     int deleteRiskStudentByUserId(Integer id);
+
+    List<RiskStudent> getRiskStudentByClassId(List<String> classIdList);
 }

@@ -13,6 +13,7 @@ import com.example.trainee_online_back.utils.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -59,6 +60,12 @@ public class TemperatureServiceImpl extends ServiceImpl<TemperatureMapper, Tempe
         queryWrapper.eq("deleted", 0);
         queryWrapper.eq("is_risk", "1");
         return temperatureMapper.delete(queryWrapper);
+    }
+
+    @Override
+    public List<RiskStudent> getRiskStudentByClassId(List<String> classIdList) {
+        List<RiskStudent> riskStudentList = temperatureMapper.getRiskStudentByClassId(classIdList);
+        return null;
     }
 }
 

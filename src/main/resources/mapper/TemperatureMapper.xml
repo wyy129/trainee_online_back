@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.trainee_online_back.mapper.TemperatureMapper">
-
     <resultMap id="BaseResultMap" type="com.example.trainee_online_back.entity.Temperature">
         <id property="temperatureId" column="temperature_id" jdbcType="INTEGER"/>
         <result property="userId" column="user_id" jdbcType="INTEGER"/>
@@ -16,9 +15,14 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        temperature_id,user_id,is_risk,
-        temperature_value,temperature_address,temperature_symptom,
-        temperature_creadeTime,deleted
+        temperature_id,
+        user_id,
+        is_risk,
+        temperature_value,
+        temperature_address,
+        temperature_symptom,
+        temperature_creadeTime,
+        deleted
     </sql>
     <select id="getRiskStudent" resultType="com.example.trainee_online_back.entity.Vo.RiskStudent">
         SELECT t.temperature_id,
@@ -30,7 +34,18 @@
                u.NAME,
                u.phone
         FROM temperature t
-                 INNER JOIN user u ON t.user_id = u.id
-            AND t.is_risk = '1'
+                     INNER JOIN user u ON t.user_id = u.id
+                AND t.is_risk = '1'
+    </select>
+
+    <select id="getRiskStudentByClassId" resultType="com.example.trainee_online_back.entity.Vo.RiskStudent">
+        select *
+        from temperature t
+                     inner join user u on t.user_id = u.id
+                where u.class_id in (
+        <foreach collection="classIdList" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
     </select>
 </mapper>

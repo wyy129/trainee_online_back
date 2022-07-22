@@ -1,19 +1,26 @@
 package com.example.trainee_online_back.controller;
 
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.collection.ListUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.example.trainee_online_back.annotation.Role;
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
 import com.example.trainee_online_back.entity.Temperature;
+import com.example.trainee_online_back.entity.Vo.RiskStudent;
 import com.example.trainee_online_back.exception.ParameterException;
 import com.example.trainee_online_back.service.TemperatureService;
 import com.example.trainee_online_back.utils.ResponseUtil;
 import com.example.trainee_online_back.utils.StringUtils;
 import com.example.trainee_online_back.utils.VerifyUserUtil;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,6 +31,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/temperature")
+@Api(value = "体温记录相关控制器", tags = "temperature")
 public class TemperatureController {
     @Autowired
     private TemperatureService temperatureService;
@@ -73,5 +81,21 @@ public class TemperatureController {
         VerifyUserUtil.verifyOperationUser(userid);
         int i = temperatureService.deleteRiskStudentByUserId(Integer.valueOf(userid));
         return ResponseUtil.returnSuccess("删除i条记录", i);
+    }
+
+    /**
+     * @desc: 根据班级id获取所有风险学生体温记录
+     * @author: wangyangyang
+     * @date: 2022-07-21 10:19:17
+     * @return: 风险学生体温记录
+     **/
+    @Role("2")
+    @RequestMapping("/getRiskStudentByClassId")
+    public JSONObject getRiskStudentByClassId(List<String> classIdList) {
+        if (classIdList.isEmpty()) {
+            return ResponseUtil.returnFail("请传入班级id");
+        }
+        List<RiskStudent> riskStudents = temperatureService.getRiskStudentByClassId(classIdList);
+        return ResponseUtil.returnSuccess(classIdList.toString() + ",风险学生列表", riskStudents);
     }
 }
