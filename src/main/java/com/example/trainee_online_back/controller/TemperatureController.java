@@ -2,6 +2,7 @@ package com.example.trainee_online_back.controller;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.collection.ListUtil;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.trainee_online_back.annotation.Role;
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
@@ -13,6 +14,8 @@ import com.example.trainee_online_back.utils.ResponseUtil;
 import com.example.trainee_online_back.utils.StringUtils;
 import com.example.trainee_online_back.utils.VerifyUserUtil;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +34,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/temperature")
-@Api(value = "体温记录相关控制器", tags = "temperature")
+@Api(value = "temperature", tags = "体温记录相关控制器")
 public class TemperatureController {
     @Autowired
     private TemperatureService temperatureService;
@@ -89,9 +92,11 @@ public class TemperatureController {
      * @date: 2022-07-21 10:19:17
      * @return: 风险学生体温记录
      **/
+    @ApiOperation(value = "根据班级id列表获取所有风险学生体温记录")
     @Role("2")
     @RequestMapping("/getRiskStudentByClassId")
-    public JSONObject getRiskStudentByClassId(List<String> classIdList) {
+    public JSONObject getRiskStudentByClassId(@RequestBody List<String> classIdList) {
+        System.out.println(classIdList);
         if (classIdList.isEmpty()) {
             return ResponseUtil.returnFail("请传入班级id");
         }

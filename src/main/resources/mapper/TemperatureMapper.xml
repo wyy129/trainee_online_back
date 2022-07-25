@@ -47,5 +47,8 @@
             #{item}
         </foreach>
         )
+                and t.deleted = 0
+                and u.deleted = 0
+                and t.is_risk = 1
     </select>
 </mapper>

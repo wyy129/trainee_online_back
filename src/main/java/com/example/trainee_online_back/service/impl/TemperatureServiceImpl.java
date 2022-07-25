@@ -65,7 +65,7 @@ public class TemperatureServiceImpl extends ServiceImpl<TemperatureMapper, Tempe
     @Override
     public List<RiskStudent> getRiskStudentByClassId(List<String> classIdList) {
         List<RiskStudent> riskStudentList = temperatureMapper.getRiskStudentByClassId(classIdList);
-        return null;
+        return riskStudentList;
     }
 }
 
