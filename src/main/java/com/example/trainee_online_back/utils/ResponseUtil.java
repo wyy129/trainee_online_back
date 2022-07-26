@@ -33,9 +33,7 @@ public class ResponseUtil {
         obj.put("data", object);
         return obj;
     }
-    
-    
-    
+
 
     public static JSONObject returnFail(String message, Object object) {
         JSONObject obj = new JSONObject();
@@ -45,7 +43,12 @@ public class ResponseUtil {
         return obj;
     }
 
-    
-    
+    public static JSONObject returnFail(String message) {
+        JSONObject obj = new JSONObject();
+        obj.put("status", 1);
+        obj.put("msg", message);
+        return obj;
+    }
+
 
 }

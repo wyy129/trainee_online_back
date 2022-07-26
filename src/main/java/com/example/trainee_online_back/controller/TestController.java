@@ -1,12 +1,16 @@
 package com.example.trainee_online_back.controller;
 
+import com.alibaba.excel.EasyExcel;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
 import com.example.trainee_online_back.entity.Dto.GetProjectDTO;
 import com.example.trainee_online_back.entity.InternshipWork;
+import com.example.trainee_online_back.entity.SysOperLog;
 import com.example.trainee_online_back.entity.User;
+import com.example.trainee_online_back.manager.AsyncManager;
+import com.example.trainee_online_back.manager.factory.AsyncFactory;
 import com.example.trainee_online_back.mapper.InternshipWorkMapper;
 import com.example.trainee_online_back.mapper.UserMapper;
 import com.example.trainee_online_back.service.ProjectInfoService;
@@ -15,14 +19,21 @@ import com.example.trainee_online_back.service.UserService;
 import com.example.trainee_online_back.utils.PageUtil;
 import com.example.trainee_online_back.utils.RedisCache;
 import com.example.trainee_online_back.utils.ResponseUtil;
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +44,7 @@ import java.util.Map;
  **/
 @RestController
 @RequestMapping("/test")
+@SuppressWarnings("all")
 public class TestController {
     private static Logger logger = LoggerFactory.getLogger(TestController.class);
     @Autowired
@@ -192,6 +204,63 @@ public class TestController {
     @RequestMapping("/test11")
     public void test11() {
         int i = number++;
-        System.out.println(i+"_________________");
+        System.out.println(i + "_________________");
     }
+
+    /**
+     * @description: 测试easy excle 未完成
+     * @author wangyangyang
+     * @date: 2022/7/5 15:54
+     * @return: 未完成
+     */
+    @RequestMapping("/test12")
+    public void test12() {
+        System.out.println("未完成");
+    }
+
+    /**
+     * @desc: 用户根据角色获取路由
+     * @author: wyy
+     * @date: 2022-07-06 21:00:48
+     * @return: 路由信息
+     **/
+    @RequestMapping("/test13")
+    public JSONObject test13() {
+//        System.out.println(role);
+        Object cacheObject = redisCache.getCacheObject("router-1");
+        System.out.println(JSON.toJSONString(cacheObject));
+        return ResponseUtil.returnSuccess("路由信息是", cacheObject);
+    }
+
+    /**
+     * @desc: 测试easyexcle
+     * @author: wyy
+     * @date: 2022-07-08 21:37:08
+     * @return: 表excle
+     **/
+    @RequestMapping("/test14")
+    public void test14(HttpServletResponse response) throws IOException {
+        List<User> users = userService.list();
+        response.setContentType("application/vnd.ms-excel");
+        response.setCharacterEncoding("utf-8");
+        // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
+        String fileName = URLEncoder.encode("userInfo", "UTF-8").replaceAll("\\+", "%20");
+        response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
+        EasyExcel.write(response.getOutputStream(), User.class).sheet("模板").doWrite(users);
+    }
+
+    /**
+     * @desc: 测试异步任务
+     * @author: wangyangyang
+     * @date: 2022-07-18 13:51:21
+     * @return:
+     **/
+    @RequestMapping("/test15")
+    public void test15() {
+        SysOperLog sysOperLog = new SysOperLog();
+        sysOperLog.setOperIp("127.0.0.1");
+        AsyncManager.me().execute(AsyncFactory.test());
+    }
+
+
 }

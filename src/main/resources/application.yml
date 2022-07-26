@@ -1,4 +1,27 @@
 spring:
+  # 邮件相关配置
+  mail:
+    # 配置 SMTP 服务器地址
+    host: smtp.qq.com
+    # 发送者邮箱
+    username: waimouserver@foxmail.com
+    # 配置密码
+    password: tglrnfciwxerbicf
+    # 端口号465或587
+    port: 587
+    # 默认的邮件编码为UTF-8
+    default-encoding: UTF-8
+    # 配置SSL 加密工厂
+    properties:
+      mail:
+        smtp:
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
+        #表示开启 DEBUG 模式，这样，邮件发送过程的日志会在控制台打印出来，方便排查错误
+        debug: true
+  # 解决swagger
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
   # redis 配置
   redis:
     # 地址

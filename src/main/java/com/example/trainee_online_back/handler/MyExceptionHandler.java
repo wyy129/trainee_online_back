@@ -4,12 +4,10 @@ package com.example.trainee_online_back.handler;
 import com.alibaba.fastjson.JSONObject;
 import com.example.trainee_online_back.exception.BasicInfoException;
 import com.example.trainee_online_back.utils.ResponseUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-;
 
 /**
  * @description:
@@ -18,11 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @since: 2021/8/20 11:25
  * @version: V1.0
  **/
+@Slf4j
 @ControllerAdvice
+@SuppressWarnings("all")
 public class MyExceptionHandler {
 
     private static final Throwable RequestParameterException = null;
-    private Logger log = LoggerFactory.getLogger(MyExceptionHandler.class);
 
     /**
      * 处理基本信息相关的异常

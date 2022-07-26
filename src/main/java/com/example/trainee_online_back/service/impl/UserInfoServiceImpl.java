@@ -8,6 +8,8 @@ import com.example.trainee_online_back.utils.RedisCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author wangyangyang
  * @description: 用户信息接口实现类
@@ -36,7 +38,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         } else {
             UserInfoVo userInfo = userMapper.getUserInfo(userid);
             // 放入缓存
-            redisCache.setCacheObject(UserInfoConstants.USERINFO + userid, userInfo);
+            redisCache.setCacheObject(UserInfoConstants.USERINFO + userid, userInfo, 3, TimeUnit.DAYS);
             return userInfo;
         }
     }

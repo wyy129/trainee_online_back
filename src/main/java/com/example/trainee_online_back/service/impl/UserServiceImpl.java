@@ -1,5 +1,6 @@
 package com.example.trainee_online_back.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -36,19 +37,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @date: 2022/6/9 12:31
      */
     @Override
-    public String login(String username, String password, String uuid) {
+    public JSONObject login(String username, String password, String uuid) {
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
         userQueryWrapper.eq("username", username);
         userQueryWrapper.eq("password", password);
         User user = userMapper.selectOne(userQueryWrapper);
         if (user == null) {
-            return "";
+            return null;
         }
         String userid = user.getId().toString();
         String token = TokenUtil.createToken(userid);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("user", user);
+        jsonObject.put("token", token);
 //        将token缓存到redis当中
         redisCache.setCacheObject(TokenConstants.USER + userid + TokenConstants.TOKEN, token, 20, TimeUnit.MINUTES);
-        return token;
+        return jsonObject;
     }
 
     /**

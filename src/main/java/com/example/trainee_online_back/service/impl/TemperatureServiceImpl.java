@@ -13,6 +13,7 @@ import com.example.trainee_online_back.utils.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -21,6 +22,7 @@ import java.util.Optional;
  * @createDate 2022-06-08 10:43:31
  */
 @Service
+@SuppressWarnings("all")
 public class TemperatureServiceImpl extends ServiceImpl<TemperatureMapper, Temperature>
         implements TemperatureService {
     @Autowired
@@ -40,6 +42,8 @@ public class TemperatureServiceImpl extends ServiceImpl<TemperatureMapper, Tempe
 
     @Override
     public int addTemperature(Temperature temperature) {
+        String temperatureValue = temperature.getTemperatureValue();
+        String temperatureSymptom = temperature.getTemperatureSymptom();
         return temperatureMapper.insert(temperature);
     }
 
@@ -56,6 +60,12 @@ public class TemperatureServiceImpl extends ServiceImpl<TemperatureMapper, Tempe
         queryWrapper.eq("deleted", 0);
         queryWrapper.eq("is_risk", "1");
         return temperatureMapper.delete(queryWrapper);
+    }
+
+    @Override
+    public List<RiskStudent> getRiskStudentByClassId(List<String> classIdList) {
+        List<RiskStudent> riskStudentList = temperatureMapper.getRiskStudentByClassId(classIdList);
+        return riskStudentList;
     }
 }
 
