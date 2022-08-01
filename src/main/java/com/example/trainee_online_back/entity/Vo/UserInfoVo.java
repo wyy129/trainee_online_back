@@ -39,7 +39,7 @@ public class UserInfoVo {
     /**
      * 用户名
      */
-    private String usernmae;
+    private String username;
     /**
      * 手机号
      */

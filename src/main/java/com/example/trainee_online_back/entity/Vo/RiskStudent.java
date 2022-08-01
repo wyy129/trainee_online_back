@@ -9,11 +9,11 @@ import lombok.Data;
  */
 @Data
 public class RiskStudent {
-    String temperature_id;
-    String temperature_value;
-    String temperature_address;
-    String temperature_symptom;
-    String temperature_creadeTime;
+    String temperatureId;
+    String temperatureValue;
+    String temperatureAddress;
+    String temperatureSymptom;
+    String temperatureCreadeTime;
     String userid;
     String name;
     String phone;
