@@ -10,6 +10,7 @@ import com.example.trainee_online_back.entity.Vo.RiskStudent;
 import com.example.trainee_online_back.service.TemperatureService;
 import com.example.trainee_online_back.mapper.TemperatureMapper;
 import com.example.trainee_online_back.utils.PageUtil;
+import com.example.trainee_online_back.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +44,11 @@ public class TemperatureServiceImpl extends ServiceImpl<TemperatureMapper, Tempe
     @Override
     public int addTemperature(Temperature temperature) {
         String temperatureValue = temperature.getTemperatureValue();
+        Long Value = Long.valueOf(temperatureValue);
         String temperatureSymptom = temperature.getTemperatureSymptom();
+        if (Value > 37.2 || StringUtils.isNotEmpty(temperatureSymptom)) {
+            temperature.setIsRisk(String.valueOf(1));
+        }
         return temperatureMapper.insert(temperature);
     }
 

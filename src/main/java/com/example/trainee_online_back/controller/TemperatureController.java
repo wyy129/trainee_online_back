@@ -1,8 +1,5 @@
 package com.example.trainee_online_back.controller;
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.collection.ListUtil;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.trainee_online_back.annotation.Role;
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
@@ -15,14 +12,11 @@ import com.example.trainee_online_back.utils.StringUtils;
 import com.example.trainee_online_back.utils.VerifyUserUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -50,13 +44,12 @@ public class TemperatureController {
         Integer userId = temperature.getUserId();
         String temperatureValue = temperature.getTemperatureValue();
         String temperatureAddress = temperature.getTemperatureAddress();
-        String temperatureSymptom = temperature.getTemperatureSymptom();
         VerifyUserUtil.verifyOperationUser(String.valueOf(userId));
-        if (StringUtils.isEmpty(temperatureValue) || StringUtils.isEmpty(temperatureAddress) || StringUtils.isEmpty(temperatureSymptom)) {
+        if (StringUtils.isEmpty(temperatureValue) || StringUtils.isEmpty(temperatureAddress)) {
             throw new ParameterException("参数不能为空");
         }
         int i = temperatureService.addTemperature(temperature);
-        return ResponseUtil.returnSuccess("成功添加i条体温记录", i);
+        return ResponseUtil.returnSuccess("成功添加体温记录", i);
     }
 
     /**
