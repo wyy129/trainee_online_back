@@ -1,7 +1,9 @@
 package com.example.trainee_online_back.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.trainee_online_back.annotation.Log;
 import com.example.trainee_online_back.annotation.Role;
+import com.example.trainee_online_back.constant.BusinessType;
 import com.example.trainee_online_back.entity.Dto.BaseQueryDto;
 import com.example.trainee_online_back.entity.Temperature;
 import com.example.trainee_online_back.entity.Vo.RiskStudent;
@@ -72,9 +74,10 @@ public class TemperatureController {
      * @return: 返回删除的条数
      */
     @RequestMapping("/deleteriskstudentbyid")
+    @Log(title = "删除学习风险管控",businessType = BusinessType.DELETE)
     public JSONObject deleteRiskStudentById(@RequestBody Map map) {
         String userid = map.get("userId").toString();
-        VerifyUserUtil.verifyOperationUser(userid);
+//        VerifyUserUtil.verifyOperationUser(userid);
         int i = temperatureService.deleteRiskStudentByUserId(Integer.valueOf(userid));
         return ResponseUtil.returnSuccess("删除i条记录", i);
     }

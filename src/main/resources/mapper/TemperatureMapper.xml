@@ -36,6 +36,7 @@
         FROM temperature t
                      INNER JOIN user u ON t.user_id = u.id
                 AND t.is_risk = '1'
+                AND t.deleted = 0
     </select>
 
     <select id="getRiskStudentByClassId" resultType="com.example.trainee_online_back.entity.Vo.RiskStudent">

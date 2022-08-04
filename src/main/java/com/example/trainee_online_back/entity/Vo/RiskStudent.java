@@ -14,7 +14,7 @@ public class RiskStudent {
     String temperatureAddress;
     String temperatureSymptom;
     String temperatureCreadeTime;
-    String userid;
+    String userId;
     String name;
     String phone;
 }
